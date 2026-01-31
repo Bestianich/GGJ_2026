@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
+using Globo.Scripts;
 using UnityEngine;
 using Random = System.Random;
 
-public class GlobeController : MonoBehaviour
+public class GlobeController : MonoBehaviour , IDraggable
 {
     public static GlobeController Instance;
     [SerializeField] private Transform _globePivot;
@@ -24,6 +25,7 @@ public class GlobeController : MonoBehaviour
     private float yaw = 0f; 
     private float pitch = 0f; 
     
+    public bool DragIsEnabled { get; set; }    
     private void Awake()
     {
         if(Instance != null)
@@ -44,16 +46,25 @@ public class GlobeController : MonoBehaviour
             }
         
     }
+
     
-    void OnMouseDown()
+
+    public void EnableDragging(bool enable)
     {
+        DragIsEnabled = enable;
+    }
+
+    public void OnMouseDown()
+    {
+        if(!DragIsEnabled)
+            return;
         //if(_resetCoroutine != null)
            // StopCoroutine(_resetCoroutine);
         _lastMousePosition = Input.mousePosition;
         _rb.angularVelocity = Vector3.zero;
     }
     
-    private void OnMouseDrag()
+    public void OnMouseDrag()
     {
         
         // float mouseX = Input.GetAxis("Mouse X") * _rotationSpeed;
@@ -75,7 +86,7 @@ public class GlobeController : MonoBehaviour
         transform.rotation = Quaternion.Euler(pitch, -yaw, 0);
     }
 
-    private void OnMouseUp()
+    public void OnMouseUp()
     {
         
         Vector3 mouseDelta = Input.mousePosition - _lastMousePosition;
@@ -83,6 +94,7 @@ public class GlobeController : MonoBehaviour
        // _rb.AddTorque(torque , ForceMode.Acceleration);
         _lastMousePosition = Input.mousePosition;
         //_resetCoroutine =  StartCoroutine(ResetRotation());
+        EnableDragging(false);
     }
 
     private IEnumerator ResetRotation()
@@ -106,10 +118,11 @@ public class GlobeController : MonoBehaviour
     {
         
         Gizmos.color = Color.red;
+        Gizmos.DrawSphere(_point - _globePivot.position,0.1f);
         if(_mainCamera == null)
             return;
         Gizmos.DrawCube(_mainCamera.transform.position, Vector3.one);
         Gizmos.DrawRay(Camera.main.transform.position,  (_mousePosition - Camera.main.transform.position ) * 10f);
-        Gizmos.DrawSphere(_point - _globePivot.position,0.1f);
+        
     }
 }
