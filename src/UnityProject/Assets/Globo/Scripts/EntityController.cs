@@ -8,7 +8,7 @@ using UnityEngine;
     {
         [SerializeField] private float _speed;
         [SerializeField] private float _waitTime;
-        private Vector3 _nextPoint;
+        private Transform _nextPoint;
         private Coroutine _randomPointCoroutine;
 
         private bool _snapped = true;
@@ -36,18 +36,26 @@ using UnityEngine;
 
         private void Move()
         {
-            if (Vector3.Distance(transform.position, _nextPoint) < 0.1f)
+            if(_nextPoint == null)
+                return;
+            
+            if (Vector3.Distance(transform.position, _nextPoint.position) < 0.1f)
             {
                 _reachedPoint = true;
+                Destroy(_nextPoint.gameObject);
                 return;
             }
-            transform.position = Vector3.Lerp(transform.position, _nextPoint, _speed * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, _nextPoint.transform.position, _speed * Time.deltaTime);
         }
 
         private IEnumerator GenerateRandomPoint()
         {
             yield return new WaitForSeconds(_waitTime);
-            _nextPoint = (UnityEngine.Random.onUnitSphere * GlobeController.Instance.GlobeRadius ) - GlobeController.Instance.GlobePivot.position;
+            Vector3 point =  (UnityEngine.Random.onUnitSphere * GlobeController.Instance.GlobeRadius ) - GlobeController.Instance.GlobePivot.position;
+            GameObject pointGO = new GameObject();
+            pointGO.transform.position = point;
+            pointGO.transform.parent = GlobeController.Instance.GlobePivot;
+            _nextPoint = pointGO.transform;
             _reachedPoint = false;
             _randomPointCoroutine = null;
             yield return null;
@@ -81,8 +89,10 @@ using UnityEngine;
             Gizmos.DrawLine(GlobeController.Instance.GlobePivot.position, transform.position - GlobeController.Instance.GlobePivot.position );
             
             Gizmos.color = Color.green;
-            Gizmos.DrawSphere(_nextPoint ,0.1f);
-            Gizmos.DrawRay(transform.position , (_nextPoint - GlobeController.Instance.GlobePivot.position) -transform.position );
+            if(_nextPoint == null)
+                return;
+            Gizmos.DrawSphere(_nextPoint.position ,0.1f);
+            Gizmos.DrawRay(transform.position , (_nextPoint.position - GlobeController.Instance.GlobePivot.position) -transform.position );
         }
         
     }

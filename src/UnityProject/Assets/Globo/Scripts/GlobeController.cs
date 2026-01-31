@@ -45,14 +45,21 @@ public class GlobeController : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
+            _rb.angularVelocity = Vector3.zero;
             //Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
-           
+           _lastMousePosition = Input.mousePosition;
            float x = Input.GetAxis("Mouse X") * _rotationSpeed;
            float y = Input.GetAxis("Mouse Y") * _rotationSpeed;
            _globePivot.Rotate(Vector3.up, -x, Space.World);
            _globePivot.Rotate(Vector3.right, y, Space.World);
         }
 
+        if (Input.GetMouseButtonUp(0))
+        {
+            var mouseDelta = Input.mousePosition - _lastMousePosition;
+            Vector3 torque = new Vector3( mouseDelta.y , -mouseDelta.x , 0) * _dragForce;
+            _rb.AddTorque(mouseDelta , ForceMode.Acceleration);
+        }
         if (Input.GetKeyDown(KeyCode.Space)) ;
 
     }
