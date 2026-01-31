@@ -1,0 +1,57 @@
+using System;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
+
+
+public class EntityDrag : MonoBehaviour
+{
+    [SerializeField] private Transform _lastParent;
+    [SerializeField] private float _sizeIncrease;
+    [SerializeField] private LayerMask _layerMask;
+    [FormerlySerializedAs("Camera")] public int debug;
+    private EntityController _entity;
+    private Vector3 _screenPoint;
+    private Vector3 _offset;
+    private Vector3 _lastScale;
+
+    private bool _isDragging;
+    private Camera _camera;
+    private void Awake()
+    {
+        _entity = GetComponent<EntityController>();
+        _camera = Camera.main;
+    }
+
+
+    public void Update()
+    {
+        var mp=Input.mousePosition;
+        
+        if (_isDragging)
+        {
+            transform.position = _camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 5f));
+            transform.up = _camera.transform.up;
+        }
+    }
+    public void OnMouseDown()
+    {
+        Debug.Log("OnMouseDown");
+        _entity.IsSnapped = false;
+        _isDragging = true;
+        _lastParent = transform.parent;
+        _lastScale = transform.localScale;
+        
+        transform.localScale *= _sizeIncrease;
+        _entity.StopAllCoroutines();
+    }
+    
+
+    public void OnMouseUp()
+    {
+        _entity.IsSnapped = true;
+        _isDragging = false;
+        transform.localScale = _lastScale;
+    }
+    
+}

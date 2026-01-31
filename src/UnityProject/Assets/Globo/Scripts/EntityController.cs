@@ -2,9 +2,10 @@ using System;
 using System.Collections;
 using Globo.Scripts;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
-    public class EntityController : MonoBehaviour
+public class EntityController : MonoBehaviour
     {
         [SerializeField] private float _speed;
         [SerializeField] private float _waitTime;
@@ -12,17 +13,18 @@ using UnityEngine;
         private Transform _nextPoint;
         private Coroutine _randomPointCoroutine;
 
-        private bool _snapped = true;
+        [FormerlySerializedAs("_snapped")] public bool IsSnapped = true;
         private bool _reachedPoint = true;
 
         private void Update()
         {
            // transform.up = transform.position - GlobeController.Instance.GlobePivot.position;
-           if(_snapped)
+           if(IsSnapped)
                 SnapToSurface();
            if(_reachedPoint && _randomPointCoroutine == null) 
               _randomPointCoroutine = StartCoroutine(GenerateRandomPoint());
-           Move();
+           if(IsSnapped)
+            Move();
         }
 
         private void SnapToSurface()
@@ -31,7 +33,6 @@ using UnityEngine;
             transform.position = GlobeController.Instance.GlobePivot.position + direction.normalized * GlobeController.Instance.GlobeRadius;
             transform.up = direction.normalized;
             transform.SetParent(GlobeController.Instance.GlobePivot);
-            
         }
 
 
@@ -66,26 +67,7 @@ using UnityEngine;
             _randomPointCoroutine = null;
             yield return null;
         }
-
         
-
-        public void OnMouseDown()
-        {
-            Debug.Log("OnMouseDown");
-            _snapped = false;
-            transform.SetParent(null);
-        }
-
-        public void OnMouseDrag()
-        {
-            Debug.Log(Input.mousePosition);
-            transform.position = Input.mousePosition;
-        }
-        public void OnMouseUp()
-        {
-            _snapped = true;
-            GenerateRandomPoint();
-        }
 
         private void OnDrawGizmos()
         {
