@@ -41,7 +41,7 @@ using UnityEngine;
             {
                 Destroy(child.gameObject);
             } 
-            //Instantiate(_activeEmotion.MaskObject, _maskTransform);
+            Instantiate(_activeEmotion.MaskObject, _maskTransform);
             
         }
 

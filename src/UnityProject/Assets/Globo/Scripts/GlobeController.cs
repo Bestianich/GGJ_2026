@@ -18,8 +18,11 @@ public class GlobeController : MonoBehaviour
     private Vector3 _mousePosition;
     private Vector3 _lastMousePosition;
     private Camera _mainCamera;
-    private Coroutine _resetCoroutine;
     private Vector3 _point;
+    private Vector3 _mouseVelocity;
+    
+    private float yaw = 0f; 
+    private float pitch = 0f; 
     
     private void Awake()
     {
@@ -52,10 +55,24 @@ public class GlobeController : MonoBehaviour
     
     private void OnMouseDrag()
     {
-        float xRotation = Input.GetAxis("Mouse X") * _rotationSpeed;
-        float yRotation = Input.GetAxis("Mouse Y") * _rotationSpeed;
-        _globePivot.Rotate(Vector3.down, xRotation);
-        _globePivot.Rotate(Vector3.right, yRotation);  
+        
+        // float mouseX = Input.GetAxis("Mouse X") * _rotationSpeed;
+        // float mouseY = Input.GetAxis("Mouse Y") * _rotationSpeed;
+        //
+        // Quaternion xRotation = Quaternion.Euler(0, mouseX, 0);
+        // Quaternion yRotation = Quaternion.Euler(-mouseY, 0, 0);
+        // transform.rotation *= xRotation * yRotation
+        
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
+
+        // Update rotation angles
+        yaw += mouseX * _rotationSpeed;
+        pitch += mouseY * _rotationSpeed; // Invert pitch for natural feel
+
+        pitch = Mathf.Clamp(pitch, -90f, 90f);
+        // Apply rotation to the camera
+        transform.rotation = Quaternion.Euler(pitch, -yaw, 0);
     }
 
     private void OnMouseUp()
@@ -63,7 +80,7 @@ public class GlobeController : MonoBehaviour
         
         Vector3 mouseDelta = Input.mousePosition - _lastMousePosition;
         Vector3 torque = new Vector3( mouseDelta.y , -mouseDelta.x , 0) * _dragForce;
-        _rb.AddTorque(torque , ForceMode.Acceleration);
+       // _rb.AddTorque(torque , ForceMode.Acceleration);
         _lastMousePosition = Input.mousePosition;
         //_resetCoroutine =  StartCoroutine(ResetRotation());
     }
