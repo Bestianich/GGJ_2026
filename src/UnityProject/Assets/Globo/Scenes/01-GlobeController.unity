@@ -5546,6 +5546,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Globe
       objectReference: {fileID: 0}
+    - target: {fileID: 3341676239818799478, guid: 3fb85883ebb2a82498e655c8d1c724db, type: 3}
+      propertyPath: _globeRadius
+      value: 6.4
+      objectReference: {fileID: 0}
     - target: {fileID: 4907184413666465210, guid: 3fb85883ebb2a82498e655c8d1c724db, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5690,7 +5694,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7465793351258892224, guid: 96b95114a2b827f41a9d4e03346ad7f4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -38.18
+      value: -30.35
       objectReference: {fileID: 0}
     - target: {fileID: 7465793351258892224, guid: 96b95114a2b827f41a9d4e03346ad7f4, type: 3}
       propertyPath: m_LocalRotation.w
