@@ -5709,12 +5709,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1353441820006997840, guid: 96b95114a2b827f41a9d4e03346ad7f4, type: 3}
+      propertyPath: _zoomSpeed
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 1353441820006997840, guid: 96b95114a2b827f41a9d4e03346ad7f4, type: 3}
       propertyPath: _zoomClamp.x
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1353441820006997840, guid: 96b95114a2b827f41a9d4e03346ad7f4, type: 3}
       propertyPath: _zoomClamp.y
-      value: 65
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 3555753995160857866, guid: 96b95114a2b827f41a9d4e03346ad7f4, type: 3}
       propertyPath: m_Name
