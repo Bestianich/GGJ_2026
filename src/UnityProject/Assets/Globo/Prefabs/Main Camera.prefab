@@ -150,6 +150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdbc71f1677b46919d0efb395935c7b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _zoomClamp: {x: 0, y: 20}
-  _zoomSpeed: 10
+  _zoomClamp: {x: 10, y: 60}
+  _zoomSpeed: 26
   _currentZoom: 0
