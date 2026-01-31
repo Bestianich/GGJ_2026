@@ -9,7 +9,7 @@ public class EntityDrag : MonoBehaviour
     [SerializeField] private Transform _lastParent;
     [SerializeField] private float _sizeIncrease;
     [SerializeField] private LayerMask _layerMask;
-    [FormerlySerializedAs("Camera")] public int debug;
+    [SerializeField] private float _dragDistance = 5f;
     private EntityController _entity;
     private Vector3 _screenPoint;
     private Vector3 _offset;
@@ -30,7 +30,7 @@ public class EntityDrag : MonoBehaviour
         
         if (_isDragging)
         {
-            transform.position = _camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 5f));
+            transform.position = _camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, _dragDistance));
             transform.up = _camera.transform.up;
         }
     }
