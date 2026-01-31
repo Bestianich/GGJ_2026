@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1813991776180123353}
   - component: {fileID: 3303437133372348787}
   - component: {fileID: 7993393934251097875}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Npc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,9 +83,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48310322368348568b3b77ba2b1e4287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!136 &7993393934251097875
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -101,7 +98,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -118,7 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4536553294073852678}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +150,7 @@ GameObject:
   - component: {fileID: 7608961462006288816}
   - component: {fileID: 3425556427497975357}
   - component: {fileID: 5265267733280980376}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +257,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6643329401905653712}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: MaskTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}

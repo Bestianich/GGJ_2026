@@ -4,7 +4,7 @@ using Globo.Scripts;
 using UnityEngine;
 using Random = System.Random;
 
-public class GlobeController : MonoBehaviour , IDraggable
+public class GlobeController : MonoBehaviour
 {
     public static GlobeController Instance;
     [SerializeField] private Transform _globePivot;
@@ -14,88 +14,51 @@ public class GlobeController : MonoBehaviour , IDraggable
     [SerializeField] private float _resetTime = 1f;
     [SerializeField] private float _resetForce = 1f;
     [SerializeField] private Rigidbody _rb;
-    public Transform GlobePivot { get { return _globePivot; } }
-    public float GlobeRadius { get { return _globeRadius; } }
+
+    public Transform GlobePivot
+    {
+        get { return _globePivot; }
+    }
+
+    public float GlobeRadius
+    {
+        get { return _globeRadius; }
+    }
+
     private Vector3 _mousePosition;
     private Vector3 _lastMousePosition;
     private Camera _mainCamera;
     private Vector3 _point;
     private Vector3 _mouseVelocity;
-    
-    private float yaw = 0f; 
-    private float pitch = 0f; 
-    
-    public bool DragIsEnabled { get; set; }    
+
+    public bool DragIsEnabled { get; set; }
+
     private void Awake()
     {
-        if(Instance != null)
+        if (Instance != null)
             Destroy(gameObject);
         Instance = this;
         _mainCamera = Camera.main;
     }
+
     private void Update()
     {
-          var mousePosition = Input.mousePosition;
-            Ray ray = _mainCamera.ScreenPointToRay(mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit))
-            {
-                _mousePosition = hit.point;
-               // Quaternion aimRotation = Quaternion.LookRotation(_mousePosition - transform.position);
-               // _pivotPosition.rotation = Quaternion.Slerp(_pivotPosition.rotation, aimRotation, Time.deltaTime * _sensibility);
-                //_pivotPosition.rotation = Quaternion.Euler(0, aimRotation.eulerAngles.y * 1/_sensibility, 0f);
-            }
-        
+        if (Input.GetMouseButton(0))
+        {
+            //Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
+           
+           float x = Input.GetAxis("Mouse X") * _rotationSpeed;
+           float y = Input.GetAxis("Mouse Y") * _rotationSpeed;
+           _globePivot.Rotate(Vector3.up, -x, Space.World);
+           _globePivot.Rotate(Vector3.right, y, Space.World);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space)) ;
+
     }
 
     
-
-    public void EnableDragging(bool enable)
-    {
-        DragIsEnabled = enable;
-    }
-
-    public void OnMouseDown()
-    {
-        if(!DragIsEnabled)
-            return;
-        //if(_resetCoroutine != null)
-           // StopCoroutine(_resetCoroutine);
-        _lastMousePosition = Input.mousePosition;
-        _rb.angularVelocity = Vector3.zero;
-    }
     
-    public void OnMouseDrag()
-    {
-        
-        // float mouseX = Input.GetAxis("Mouse X") * _rotationSpeed;
-        // float mouseY = Input.GetAxis("Mouse Y") * _rotationSpeed;
-        //
-        // Quaternion xRotation = Quaternion.Euler(0, mouseX, 0);
-        // Quaternion yRotation = Quaternion.Euler(-mouseY, 0, 0);
-        // transform.rotation *= xRotation * yRotation
-        
-        float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
-
-        // Update rotation angles
-        yaw += mouseX * _rotationSpeed;
-        pitch += mouseY * _rotationSpeed; // Invert pitch for natural feel
-
-        pitch = Mathf.Clamp(pitch, -90f, 90f);
-        // Apply rotation to the camera
-        transform.rotation = Quaternion.Euler(pitch, -yaw, 0);
-    }
-
-    public void OnMouseUp()
-    {
-        
-        Vector3 mouseDelta = Input.mousePosition - _lastMousePosition;
-        Vector3 torque = new Vector3( mouseDelta.y , -mouseDelta.x , 0) * _dragForce;
-       // _rb.AddTorque(torque , ForceMode.Acceleration);
-        _lastMousePosition = Input.mousePosition;
-        //_resetCoroutine =  StartCoroutine(ResetRotation());
-        EnableDragging(false);
-    }
 
     private IEnumerator ResetRotation()
     {
@@ -121,8 +84,10 @@ public class GlobeController : MonoBehaviour , IDraggable
         Gizmos.DrawSphere(_point - _globePivot.position,0.1f);
         if(_mainCamera == null)
             return;
+        Gizmos.DrawRay(_globePivot.position , _globePivot.forward *10f);
         Gizmos.DrawCube(_mainCamera.transform.position, Vector3.one);
         Gizmos.DrawRay(Camera.main.transform.position,  (_mousePosition - Camera.main.transform.position ) * 10f);
+        Gizmos.DrawSphere(_mousePosition,0.1f);
         
     }
 }

@@ -3,7 +3,7 @@ using Globo.Scripts;
 using UnityEngine;
 
 
-    public class EntityController : MonoBehaviour , IDraggable
+    public class EntityController : MonoBehaviour 
     {
         private Vector3 _nextPoint;
         
@@ -56,9 +56,9 @@ using UnityEngine;
 
         public void OnMouseDown()
         {
-            if(!DragIsEnabled)
-                return;
+            Debug.Log("OnMouseDown");
             _snapped = false;
+            transform.SetParent(null);
         }
 
         public void OnMouseDrag()
@@ -70,6 +70,7 @@ using UnityEngine;
         {
             _snapped = true;
             DragIsEnabled = false;
+            GenerateRandomPoint();
         }
 
         private void OnDrawGizmos()
