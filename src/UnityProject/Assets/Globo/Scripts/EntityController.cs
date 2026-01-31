@@ -8,6 +8,7 @@ using UnityEngine;
     {
         [SerializeField] private float _speed;
         [SerializeField] private float _waitTime;
+        [SerializeField] private float _distanceRange = 2f;
         private Transform _nextPoint;
         private Coroutine _randomPointCoroutine;
 
@@ -52,11 +53,16 @@ using UnityEngine;
         {
             yield return new WaitForSeconds(_waitTime);
             Vector3 point =  (UnityEngine.Random.onUnitSphere * GlobeController.Instance.GlobeRadius ) - GlobeController.Instance.GlobePivot.position;
+            while (Vector3.Distance(transform.position, point) > _distanceRange)
+            {
+                point = (UnityEngine.Random.onUnitSphere * GlobeController.Instance.GlobeRadius ) - GlobeController.Instance.GlobePivot.position;
+                yield return null;
+            }
             GameObject pointGO = new GameObject();
             pointGO.transform.position = point;
             pointGO.transform.parent = GlobeController.Instance.GlobePivot;
             _nextPoint = pointGO.transform;
-            _reachedPoint = false;
+            _reachedPoint = false; 
             _randomPointCoroutine = null;
             yield return null;
         }
