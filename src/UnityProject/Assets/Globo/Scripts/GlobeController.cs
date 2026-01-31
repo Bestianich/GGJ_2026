@@ -43,7 +43,7 @@ public class GlobeController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(1))
         {
             _rb.angularVelocity = Vector3.zero;
             //Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -54,7 +54,7 @@ public class GlobeController : MonoBehaviour
            _globePivot.Rotate(Vector3.right, y, Space.World);
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(1))
         {
             var mouseDelta = Input.mousePosition - _lastMousePosition;
             Vector3 torque = new Vector3( mouseDelta.y , -mouseDelta.x , 0) * _dragForce;
