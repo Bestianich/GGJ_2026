@@ -1,13 +1,15 @@
 using System;
+using System.Collections;
 using Globo.Scripts;
 using UnityEngine;
 
 
-    public class EntityController : MonoBehaviour 
+    public class EntityController : MonoBehaviour
     {
+        [SerializeField] private float _speed;
+        [SerializeField] private float _waitTime;
         private Vector3 _nextPoint;
-        
-        public bool DragIsEnabled { get; set; }
+        private Coroutine _randomPointCoroutine;
 
         private bool _snapped = true;
         private bool _reachedPoint = true;
@@ -17,8 +19,8 @@ using UnityEngine;
            // transform.up = transform.position - GlobeController.Instance.GlobePivot.position;
            if(_snapped)
                 SnapToSurface();
-           if(_reachedPoint) 
-               GenerateRandomPoint();
+           if(_reachedPoint && _randomPointCoroutine == null) 
+              _randomPointCoroutine = StartCoroutine(GenerateRandomPoint());
            Move();
         }
 
@@ -34,25 +36,24 @@ using UnityEngine;
 
         private void Move()
         {
-            if (transform.position == _nextPoint)
+            if (Vector3.Distance(transform.position, _nextPoint) < 0.1f)
             {
                 _reachedPoint = true;
                 return;
             }
-            transform.position = Vector3.Lerp(transform.position, _nextPoint, Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, _nextPoint, _speed * Time.deltaTime);
         }
 
-        private void GenerateRandomPoint()
+        private IEnumerator GenerateRandomPoint()
         {
+            yield return new WaitForSeconds(_waitTime);
             _nextPoint = (UnityEngine.Random.onUnitSphere * GlobeController.Instance.GlobeRadius ) - GlobeController.Instance.GlobePivot.position;
             _reachedPoint = false;
+            _randomPointCoroutine = null;
+            yield return null;
         }
 
-
-        public void EnableDragging(bool enable)
-        {
-            DragIsEnabled = enable;
-        }
+        
 
         public void OnMouseDown()
         {
@@ -69,7 +70,6 @@ using UnityEngine;
         public void OnMouseUp()
         {
             _snapped = true;
-            DragIsEnabled = false;
             GenerateRandomPoint();
         }
 
