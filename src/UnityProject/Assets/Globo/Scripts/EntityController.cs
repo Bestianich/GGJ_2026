@@ -42,7 +42,7 @@ public class EntityController : MonoBehaviour
             if (Physics.Raycast(this.transform.position, GlobeController.Instance.GlobePivot.position - transform.position, out RaycastHit hit, Mathf.Infinity))
             {
                 transform.up = hit.normal;
-                transform.SetParent(GlobeController.Instance.GlobePivot);
+                transform.SetParent(_assignedContinent.transform);
 
             }
         }

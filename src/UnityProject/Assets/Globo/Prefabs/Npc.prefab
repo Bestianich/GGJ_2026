@@ -61,7 +61,7 @@ MonoBehaviour:
     GizmoColor: {r: 0, g: 0.29791164, b: 1, a: 1}
   - MaskObject: {fileID: 3326984835786242654, guid: 82ba85e3235287e48923f6a0bfc39016, type: 3}
     Emotion: 2
-    Value: 5
+    Value: 100
     GizmoColor: {r: 0.93499434, g: 1, b: 0, a: 1}
   - MaskObject: {fileID: 6648032449025248461, guid: f69684355d86dfb4caab27de5f84ab6c, type: 3}
     Emotion: 3
