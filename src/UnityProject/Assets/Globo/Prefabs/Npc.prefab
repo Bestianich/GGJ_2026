@@ -85,7 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48310322368348568b3b77ba2b1e4287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0.8
+  _speed: 0.1
   _waitTime: 0.1
   _distanceRange: 1
   _assignedContinent: {fileID: 0}
