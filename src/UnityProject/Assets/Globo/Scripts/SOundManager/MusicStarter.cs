@@ -17,6 +17,7 @@ public class LevelMusicStarter : MonoBehaviour
 
     private void ApplyMusic()
     {
+        Debug.Log("Music should start");
         if (SoundManager.Instance != null && !string.IsNullOrEmpty(musicName))
         {
             SoundManager.Instance.PlayMusicWithFade(musicName, fadeDuration);

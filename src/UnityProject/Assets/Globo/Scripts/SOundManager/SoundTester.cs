@@ -14,12 +14,12 @@ public class SoundTester : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             Debug.Log("Play sound: Pickup");
-            GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().PlaySound("NPC_Grab");
+            GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().PlaySound("SFX_Pickup");
         }
         if (Input.GetKeyDown(KeyCode.T))
         {
             Debug.Log("Play sound: Drop");
-            GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().PlaySound("NPC_Drop");
+            GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().PlaySound("SFX_Drop");
         }
     }
 }
