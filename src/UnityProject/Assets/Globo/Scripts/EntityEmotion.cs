@@ -5,6 +5,7 @@ using UnityEngine;
 [Serializable]
     public class EntityEmotion
     {
+        public GameObject Particle;
         public GameObject MaskObject;
         public Emotion Emotion;
         public Color GizmoColor;

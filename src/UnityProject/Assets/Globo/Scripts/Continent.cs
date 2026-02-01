@@ -6,8 +6,8 @@ using UnityEngine.Serialization;
 
 public class Continent : MonoBehaviour
 {
-    [SerializeField] private List<Entity> _entities;
-    [FormerlySerializedAs("_enragedEntitiesCount")] [SerializeField] private int _enragedCount;
+    [SerializeField] public List<Entity> _entities;
+    [FormerlySerializedAs("_enragedEntitiesCount")] [SerializeField] public int _enragedCount;
     [SerializeField] private float _enrageInterval;
     [SerializeField] private int _enrageAmount;
     [FormerlySerializedAs("_spawnPoint")] [SerializeField] private Transform _continetCenter;
@@ -49,11 +49,13 @@ public class Continent : MonoBehaviour
     public void AddEntity(Entity entity)
     {
         _entities.Add(entity);
+        UpdateCount();
     }
 
     public void RemoveEntity(Entity entity)
     {
         _entities.Remove(entity);
+        UpdateCount();
     }
 
     public Entity NearestEntity(Vector3 point , float range)
@@ -63,7 +65,12 @@ public class Continent : MonoBehaviour
         foreach (var entity in _entities)
         {
             var temp = Vector3.Distance(point , entity.transform.position);
-            if (distance > temp)
+            Debug.Log(temp);
+            Debug.Log(range);
+            Debug.Log(temp > range);
+            if (temp > range || temp == 0)
+                continue;
+            if (distance <= temp)
             {
                 distance = temp;
                 nearestEntity = entity;
@@ -81,7 +88,7 @@ public class Continent : MonoBehaviour
         {
             int count = 0;
             yield return new WaitForSeconds(_enrageInterval);
-            while (count < _enrageAmount)
+            while (count < _enrageAmount && _enragedCount != _entities.Count)
             {
                 var index = Random.Range(0, _entities.Count);
                 if (_entities[index].GetEmotion().Emotion != Emotion.Rage)
@@ -89,6 +96,8 @@ public class Continent : MonoBehaviour
                     _entities[index].UpdateEmotion(Emotion.Rage);
                     count++;
                 }
+
+                yield return null;
             }
             UpdateCount();
         }
@@ -97,11 +106,11 @@ public class Continent : MonoBehaviour
 
     public void UpdateCount()
     {
-        _enrageAmount = 0;
+        _enragedCount = 0;
         foreach (var entity in _entities)
         {
             if (entity.GetEmotion().Emotion == Emotion.Rage)
-                _enrageAmount++;
+                _enragedCount++;
         }
     }
     private void OnDrawGizmos()
