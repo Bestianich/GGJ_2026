@@ -10,11 +10,17 @@ public class EntityController : MonoBehaviour
         [SerializeField] private float _speed;
         [SerializeField] private float _waitTime;
         [SerializeField] private float _distanceRange = 2f;
+        [SerializeField] private Continent _assignedContinent;
         private Transform _nextPoint;
         private Coroutine _randomPointCoroutine;
 
         [FormerlySerializedAs("_snapped")] public bool IsSnapped = true;
         private bool _reachedPoint = true;
+
+        private void Start()
+        {
+            _assignedContinent = ContinentManager.Instance.SearchContinents(transform.position);
+        }
 
         private void Update()
         {
@@ -23,7 +29,7 @@ public class EntityController : MonoBehaviour
                 SnapToSurface();
            if(_reachedPoint && _randomPointCoroutine == null) 
               _randomPointCoroutine = StartCoroutine(GenerateRandomPoint());
-           if(IsSnapped)
+           if(IsSnapped || _nextPoint != null)
             Move();
         }
 
@@ -38,9 +44,7 @@ public class EntityController : MonoBehaviour
 
         private void Move()
         {
-            if(_nextPoint == null)
-                return;
-            
+            Debug.Log(_nextPoint);
             if (Vector3.Distance(transform.position, _nextPoint.position) < 0.1f)
             {
                 _reachedPoint = true;
@@ -54,11 +58,13 @@ public class EntityController : MonoBehaviour
         {
             yield return new WaitForSeconds(_waitTime);
             Vector3 point =  (UnityEngine.Random.onUnitSphere * GlobeController.Instance.GlobeRadius ) - GlobeController.Instance.GlobePivot.position;
-            while (Vector3.Distance(transform.position, point) > _distanceRange)
+            
+            while (!_assignedContinent.GetMeshRenderer().bounds.Contains(point))
             {
                 point = (UnityEngine.Random.onUnitSphere * GlobeController.Instance.GlobeRadius ) - GlobeController.Instance.GlobePivot.position;
                 yield return null;
             }
+            
             GameObject pointGO = new GameObject();
             pointGO.transform.position = point;
             pointGO.transform.parent = GlobeController.Instance.GlobePivot;
@@ -67,7 +73,19 @@ public class EntityController : MonoBehaviour
             _randomPointCoroutine = null;
             yield return null;
         }
-        
+
+        public void UpdateContinent()
+        {
+            _assignedContinent = ContinentManager.Instance.SearchContinents(transform.position);
+        }
+
+        public void StopNextPoint()
+        {
+            _reachedPoint = true;
+            Destroy(_nextPoint.gameObject);
+        }
+
+    
 
         private void OnDrawGizmos()
         {
