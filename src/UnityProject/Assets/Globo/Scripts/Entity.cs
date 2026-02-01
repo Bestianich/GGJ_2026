@@ -7,12 +7,22 @@ using UnityEngine;
         [SerializeField] private List<EntityEmotion> _emotions = new List<EntityEmotion>();
         [SerializeField] private Transform _maskTransform;
         [SerializeField] private EntityEmotion _activeEmotion;
+        [SerializeField] private float _rangeInteraction;
+        [SerializeField] public Continent AssignedContinent;
+        [SerializeField] private int _maxSteps = 3;
+        private int _currentSteps = 0;
 
 
         private void Awake()
         {
             _activeEmotion = null;
             UpdateEmotion(Emotion.Happiness);
+        }
+
+        private void Start()
+        {
+            AssignedContinent = ContinentManager.Instance.SearchContinents(transform.position);
+            AssignedContinent.AddEntity(this);
         }
         
         private void ChangeMask()
@@ -41,6 +51,35 @@ using UnityEngine;
             }
             _activeEmotion = temp;
             ChangeMask();
+            if(_activeEmotion.Particle != null)
+                Instantiate(_activeEmotion.Particle, _maskTransform);
+        }
+
+        public void CheckAction()
+        {
+            var entity = AssignedContinent.NearestEntity(transform.position, _rangeInteraction);
+            switch (_activeEmotion.Emotion)
+            {
+                case Emotion.Rage:
+                    if (entity == null)
+                    {
+                        _currentSteps++;
+                        if(_currentSteps > _maxSteps)
+                            UpdateEmotion(Emotion.Sadness);
+                        break;
+                    }
+                    if(entity._activeEmotion.Emotion != Emotion.Rage)
+                        entity.UpdateEmotion(Emotion.Rage);
+                    
+                    break;
+                case Emotion.Sadness:
+                    if(entity == null)
+                        break;
+                    if(entity._activeEmotion.Emotion == Emotion.Happiness)
+                        entity.UpdateEmotion(Emotion.Sadness);
+                    break;
+            }
+            
         }
 
         public EntityEmotion GetEmotion()
@@ -53,5 +92,7 @@ using UnityEngine;
             if(_maskTransform  == null)
                 return;
             Gizmos.DrawSphere(_maskTransform.position, 0.2f);
+            
+            Gizmos.DrawWireSphere(transform.position, _rangeInteraction);
         }
     }

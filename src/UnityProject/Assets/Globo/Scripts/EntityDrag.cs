@@ -34,25 +34,28 @@ public class EntityDrag : MonoBehaviour
     }
     public void OnMouseDown()
     {
+        if(_isDragging)
+            Drop();
         Debug.Log("OnMouseDown");
         _entity.IsDragged = true;
         _isDragging = true;
-        _lastParent = transform.parent;
-        _lastScale = transform.localScale;
-        
+        //_lastParent = transform.parent;
         transform.localScale *= _sizeIncrease;
+        transform.parent = _camera.transform;
         _entity.StopNextPoint();
     }
-    
 
-    public void OnMouseUp()
+    public void Drop()
     {
+        _isDragging = false;
         _entity.IsDragged = false;
         _isDragging = false;
-        transform.localScale = _lastScale;
         _entity.UpdateContinent();
-        _entity.StartRandomPoint();
         
+        _entity.StartRandomPoint();
+        transform.localScale /= _sizeIncrease;
+        Cursor.lockState = CursorLockMode.Confined;
+        return;
     }
     
 }
