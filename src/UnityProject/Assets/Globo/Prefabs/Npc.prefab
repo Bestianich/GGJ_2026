@@ -51,19 +51,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _emotions:
-  - Particle: {fileID: 0}
+  - Particle: {fileID: 1461426880596393950, guid: 599b19e6f8d085346989a5497578fbf1, type: 3}
     MaskObject: {fileID: 5047593357787775036, guid: c30ff5119ba964647bc47ca6d8bc649b, type: 3}
     Emotion: 0
     GizmoColor: {r: 1, g: 0, b: 0, a: 1}
-  - Particle: {fileID: 0}
+  - Particle: {fileID: 1461426880596393950, guid: 599b19e6f8d085346989a5497578fbf1, type: 3}
     MaskObject: {fileID: 2414882853145676496, guid: e769694de27a87e43996aabad547c6ac, type: 3}
     Emotion: 1
     GizmoColor: {r: 0, g: 0.29791164, b: 1, a: 1}
-  - Particle: {fileID: 0}
+  - Particle: {fileID: 1461426880596393950, guid: 599b19e6f8d085346989a5497578fbf1, type: 3}
     MaskObject: {fileID: 3326984835786242654, guid: 82ba85e3235287e48923f6a0bfc39016, type: 3}
     Emotion: 2
     GizmoColor: {r: 0.93499434, g: 1, b: 0, a: 1}
-  - Particle: {fileID: 0}
+  - Particle: {fileID: 1461426880596393950, guid: 599b19e6f8d085346989a5497578fbf1, type: 3}
     MaskObject: {fileID: 6648032449025248461, guid: f69684355d86dfb4caab27de5f84ab6c, type: 3}
     Emotion: 3
     GizmoColor: {r: 0.3825028, g: 1, b: 0, a: 1}
