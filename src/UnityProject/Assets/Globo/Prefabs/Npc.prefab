@@ -68,6 +68,9 @@ MonoBehaviour:
     MaskObject: {fileID: 0}
     Emotion: 0
     GizmoColor: {r: 0, g: 0, b: 0, a: 0}
+  _rangeInteraction: 10
+  AssignedContinent: {fileID: 0}
+  _maxSteps: 3
 --- !u!114 &3303437133372348787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,7 +86,6 @@ MonoBehaviour:
   _speed: 0.05
   _waitTime: 0.1
   _distanceRange: 1
-  _assignedContinent: {fileID: 0}
   IsDragged: 0
 --- !u!114 &6549551746709444547
 MonoBehaviour:

@@ -10,18 +10,17 @@ public class EntityController : MonoBehaviour
         [SerializeField] private float _speed;
         [SerializeField] private float _waitTime;
         [SerializeField] private float _distanceRange = 2f;
-        [SerializeField] private Continent _assignedContinent;
         private Transform _nextPoint;
         private Coroutine _randomPointCoroutine;
 
+        private Entity _entity;
         
         public bool IsDragged = false;
         private bool _reachedPoint = true;
-
+        private int _steps = 0;
         private void Start()
         {
-            _assignedContinent = ContinentManager.Instance.SearchContinents(transform.position);
-            _assignedContinent.AddEntity(this.GetComponent<Entity>());
+            _entity = GetComponent<Entity>();
         }
 
         private void Update()
@@ -42,7 +41,7 @@ public class EntityController : MonoBehaviour
             if (Physics.Raycast(this.transform.position, GlobeController.Instance.GlobePivot.position - transform.position, out RaycastHit hit, Mathf.Infinity))
             {
                 transform.up = hit.normal;
-                transform.SetParent(_assignedContinent.transform);
+                transform.SetParent(_entity.AssignedContinent.transform);
 
             }
         }
@@ -56,6 +55,7 @@ public class EntityController : MonoBehaviour
             {
                 _reachedPoint = true;
                 Destroy(_nextPoint.gameObject);
+                _entity.CheckAction();
                 return;
             }
             transform.position = Vector3.Lerp(transform.position, _nextPoint.transform.position, _speed * Time.deltaTime);
@@ -66,7 +66,7 @@ public class EntityController : MonoBehaviour
             yield return new WaitForSeconds(_waitTime);
             Vector3 point =  (UnityEngine.Random.onUnitSphere * GlobeController.Instance.GlobeRadius ) - GlobeController.Instance.GlobePivot.position;
             
-            while (!_assignedContinent.GetMeshRenderer().bounds.Contains(point))
+            while (!_entity.AssignedContinent.GetMeshRenderer().bounds.Contains(point))
             {
                 point = (UnityEngine.Random.onUnitSphere * GlobeController.Instance.GlobeRadius ) - GlobeController.Instance.GlobePivot.position;
                 yield return null;
@@ -87,9 +87,9 @@ public class EntityController : MonoBehaviour
             if (Physics.Raycast(this.transform.position, GlobeController.Instance.GlobePivot.position - transform.position, out RaycastHit hit, Mathf.Infinity , 1 << 7))
             {
                 Debug.Log(hit.transform.name);
-                _assignedContinent.RemoveEntity(this.GetComponent<Entity>());
-                _assignedContinent = ContinentManager.Instance.FindContinentWithMesh(hit.collider.GetComponent<MeshRenderer>());
-                _assignedContinent.AddEntity(this.gameObject.GetComponent<Entity>());
+                _entity.AssignedContinent.RemoveEntity(this.GetComponent<Entity>());
+                _entity.AssignedContinent.AddEntity(this.gameObject.GetComponent<Entity>());
+                _entity.AssignedContinent = ContinentManager.Instance.FindContinentWithMesh(hit.collider.GetComponent<MeshRenderer>());
                 Debug.DrawRay(transform.position , -transform.up * 5f , Color.green);
             }
         }
