@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: acqua
-  m_Shader: {fileID: -6465566751694194690, guid: ba4113fd72f541c48893830f283be408, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: cdcd358b11f8ac44faa0e5302fe48249, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -37,6 +37,14 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _SampleTexture2D_1960d4d757d54dd088c4c7d05e084dca_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 6bffaf725107aaf47bd6cf4f283f8848, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_d4daedecdd0648c4b05572258f52f5a9_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 6bffaf725107aaf47bd6cf4f283f8848, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Texture2D:
         m_Texture: {fileID: 2800000, guid: c6c57dc22d84e9347aa3ff13b90066cf, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -55,13 +63,23 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Float: -6.59
+    - _Float_1: -0.47
     - _QueueControl: 0
     - _QueueOffset: 0
     - _edge_power: 0.25
     - _shadow_power: 0.5
     - _strenght: 0.7
     m_Colors:
-    - _Color: {r: 0, g: 0.23087478, b: 1, a: 0}
+    - _Color: {r: 0.20589375, g: 0.38962817, b: 1, a: 0}
+    - _Color_1: {r: 1, g: 0, b: 0, a: 0}
+    - _Offset_time01: {r: 1.27, g: -0.39, b: 0, a: 0}
+    - _Offset_time02: {r: -0.3, g: 0.1, b: 0, a: 0}
+    - _Speed01: {r: 0.05, g: 0.1, b: 0, a: 0}
+    - _Speed02: {r: -0.1, g: 0.2, b: 0, a: 0}
+    - _Tiling_time01: {r: 8, g: 8, b: 0, a: 0}
+    - _Tiling_time02: {r: 8, g: 8, b: 0, a: 0}
+    - _aaaaa: {r: 8, g: 8, b: 0, a: 0}
     - _shadow_color: {r: 0, g: 0.29787347, b: 1, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
