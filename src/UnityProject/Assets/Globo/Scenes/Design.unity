@@ -243,18 +243,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Npc
       objectReference: {fileID: 0}
-    - target: {fileID: 6643329401905653712, guid: e0bd918221834a142902a246ac0a7e47, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9914449
-      objectReference: {fileID: 0}
-    - target: {fileID: 6643329401905653712, guid: e0bd918221834a142902a246ac0a7e47, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.13052616
-      objectReference: {fileID: 0}
-    - target: {fileID: 6643329401905653712, guid: e0bd918221834a142902a246ac0a7e47, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 15
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -392,6 +380,99 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1001 &711061484
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1447357366960505348, guid: 34b80ab22a024ed45876583d22c6e814, type: 3}
+      propertyPath: m_Name
+      value: SoundManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572031678538571743, guid: 34b80ab22a024ed45876583d22c6e814, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572031678538571743, guid: 34b80ab22a024ed45876583d22c6e814, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572031678538571743, guid: 34b80ab22a024ed45876583d22c6e814, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572031678538571743, guid: 34b80ab22a024ed45876583d22c6e814, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572031678538571743, guid: 34b80ab22a024ed45876583d22c6e814, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572031678538571743, guid: 34b80ab22a024ed45876583d22c6e814, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572031678538571743, guid: 34b80ab22a024ed45876583d22c6e814, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572031678538571743, guid: 34b80ab22a024ed45876583d22c6e814, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572031678538571743, guid: 34b80ab22a024ed45876583d22c6e814, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572031678538571743, guid: 34b80ab22a024ed45876583d22c6e814, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1447357366960505348, guid: 34b80ab22a024ed45876583d22c6e814, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 711061486}
+  m_SourcePrefab: {fileID: 100100000, guid: 34b80ab22a024ed45876583d22c6e814, type: 3}
+--- !u!1 &711061485 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1447357366960505348, guid: 34b80ab22a024ed45876583d22c6e814, type: 3}
+  m_PrefabInstance: {fileID: 711061484}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &711061486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711061485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a060ec0d32e1a4469560d605d470530, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TotalNPC: 0
+  EnragedNPC: 0
+  EnragedPercentage: 0
+  MildEnragedPercentage: 25
+  StrongEnragedPercentage: 50
+  NeutralOSTName: OST_Neutral
+  MildEnragedlOSTName: OST_MildAngry
+  StrongEnragedOSTName: OST_StrongAngry
+  FadeDuration: 0.5
+  MinTimeSinceChange: 5
+  Continents:
+  - {fileID: 1178999635}
+  - {fileID: 442319678}
+  - {fileID: 328408913}
+  - {fileID: 175393988}
+  - {fileID: 1863294354}
 --- !u!114 &1178999635 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4370621229750183782, guid: 3fb85883ebb2a82498e655c8d1c724db, type: 3}
@@ -557,3 +638,4 @@ SceneRoots:
   - {fileID: 404547304}
   - {fileID: 1863294346}
   - {fileID: 39675277}
+  - {fileID: 711061484}
