@@ -6,6 +6,7 @@ public class Continent : MonoBehaviour
 {
     [SerializeField] private List<Entity> _entities;
     [SerializeField] private Transform _spawnPoint;
+    [SerializeField] private Spawner _spawner;
     [SerializeField] private float _range;
     [SerializeField] private MeshRenderer _meshRenderer;
 
@@ -16,8 +17,10 @@ public class Continent : MonoBehaviour
             _meshRenderer = GetComponent<MeshRenderer>();
         if(_spawnPoint == null)
             _spawnPoint = transform;
+        if(_spawner != null)
+            _entities = _spawner.Spawn();
     }
-
+    
     public float FindDistance(Vector3 point)
     {
         return Vector3.Distance(transform.position, point);
@@ -27,7 +30,11 @@ public class Continent : MonoBehaviour
     {
         return _meshRenderer;
     }
-    
+
+    public void AddEntity(Entity entity)
+    {
+        _entities.Add(entity);
+    }
 
     private void OnDrawGizmos()
     {
