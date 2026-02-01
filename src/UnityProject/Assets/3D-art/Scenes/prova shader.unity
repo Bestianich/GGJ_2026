@@ -377,7 +377,7 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!1001 &5504165442376293354
+--- !u!1001 &3114711506718591143
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -429,18 +429,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.031
       objectReference: {fileID: 0}
-    - target: {fileID: 8334021127944824564, guid: b1e895ec640f1964eaec2600aac531e9, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.97600037
-      objectReference: {fileID: 0}
-    - target: {fileID: 8334021127944824564, guid: b1e895ec640f1964eaec2600aac531e9, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -110.45996
-      objectReference: {fileID: 0}
-    - target: {fileID: 8334021127944824564, guid: b1e895ec640f1964eaec2600aac531e9, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -11.812789
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -452,4 +440,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 2132926232}
   - {fileID: 804349295}
-  - {fileID: 5504165442376293354}
+  - {fileID: 3114711506718591143}

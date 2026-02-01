@@ -1474,7 +1474,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
     "m_ObjectId": "3ef298fc66ec4ae9bd27f7e79e0faabf",
     "m_Id": 0,
-    "m_DisplayName": "Vector2 (3)",
+    "m_DisplayName": "Tiling_time01",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
