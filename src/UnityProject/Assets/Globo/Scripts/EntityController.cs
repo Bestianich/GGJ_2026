@@ -21,6 +21,7 @@ public class EntityController : MonoBehaviour
         private void Start()
         {
             _assignedContinent = ContinentManager.Instance.SearchContinents(transform.position);
+            _assignedContinent.AddEntity(this.GetComponent<Entity>());
         }
 
         private void Update()
@@ -41,7 +42,7 @@ public class EntityController : MonoBehaviour
             if (Physics.Raycast(this.transform.position, GlobeController.Instance.GlobePivot.position - transform.position, out RaycastHit hit, Mathf.Infinity))
             {
                 transform.up = hit.normal;
-                transform.SetParent(GlobeController.Instance.GlobePivot);
+                transform.SetParent(_assignedContinent.transform);
 
             }
         }
@@ -86,7 +87,9 @@ public class EntityController : MonoBehaviour
             if (Physics.Raycast(this.transform.position, GlobeController.Instance.GlobePivot.position - transform.position, out RaycastHit hit, Mathf.Infinity , 1 << 7))
             {
                 Debug.Log(hit.transform.name);
+                _assignedContinent.RemoveEntity(this.GetComponent<Entity>());
                 _assignedContinent = ContinentManager.Instance.FindContinentWithMesh(hit.collider.GetComponent<MeshRenderer>());
+                _assignedContinent.AddEntity(this.gameObject.GetComponent<Entity>());
                 Debug.DrawRay(transform.position , -transform.up * 5f , Color.green);
             }
         }
