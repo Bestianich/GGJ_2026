@@ -4,7 +4,7 @@ using UnityEngine;
 
     public class Entity : MonoBehaviour
     {
-        [SerializeField] private List<EntityEmotion> _emotions;
+        [SerializeField] private List<EntityEmotion> _emotions = new List<EntityEmotion>();
         [SerializeField] private Transform _maskTransform;
         [SerializeField] private EntityEmotion _activeEmotion;
 
@@ -12,29 +12,9 @@ using UnityEngine;
         private void Awake()
         {
             _activeEmotion = null;
-            ChooseEmotion();
+            UpdateEmotion(Emotion.Happiness);
         }
-
-        [ContextMenu("ChooseEmotion %1")]
-        private void ChooseEmotion()
-        {
-            Debug.Log("Choosing Emotion");   
-            foreach (var emotion in _emotions )
-            {
-                if (_activeEmotion == null)
-                {
-                    _activeEmotion = emotion;
-                    continue;
-                }
-
-                if (_activeEmotion.Value < emotion.Value && _activeEmotion.Emotion != emotion.Emotion)
-                {
-                    _activeEmotion = emotion;
-                }
-            }
-            
-            ChangeMask();
-        }
+        
         private void ChangeMask()
         {
             foreach (Transform child in _maskTransform)
@@ -51,6 +31,22 @@ using UnityEngine;
             _activeEmotion = null;
         }
 
+        public void UpdateEmotion(Emotion emotion)
+        {
+            EntityEmotion temp = _activeEmotion;
+            foreach (EntityEmotion em in _emotions)
+            {
+                if (em.Emotion == emotion)
+                    temp = em;
+            }
+            _activeEmotion = temp;
+            ChangeMask();
+        }
+
+        public EntityEmotion GetEmotion()
+        {
+            return _activeEmotion;
+        }
         private void OnDrawGizmos()
         {
             Gizmos.color = _activeEmotion.GizmoColor;
