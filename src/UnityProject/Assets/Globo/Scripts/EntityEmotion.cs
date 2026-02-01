@@ -7,7 +7,6 @@ using UnityEngine;
     {
         public GameObject MaskObject;
         public Emotion Emotion;
-        public int Value;
         public Color GizmoColor;
     }
 
