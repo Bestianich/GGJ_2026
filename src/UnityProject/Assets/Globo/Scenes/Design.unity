@@ -772,7 +772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _globePivot: {fileID: 3047638663645701680}
-  _globeRadius: 6
+  _globeRadius: 5.9
   _rotationSpeed: 8
   _dragForce: 3
   _resetTime: 1
