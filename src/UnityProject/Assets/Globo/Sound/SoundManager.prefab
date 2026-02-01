@@ -76,7 +76,7 @@ MonoBehaviour:
   - soundName: OST_StrongAngry
     clip: {fileID: 8300000, guid: b3aec4deae8d6e74a8f62e886c061463, type: 3}
     ignoreTimeScale: 0
-    volume: 1
+    volume: 0.9
     pitch: 1
     useRandomVariance: 0
     randomPitchRange: 0
@@ -90,8 +90,8 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     useRandomVariance: 1
-    randomPitchRange: 0
-    randomVolumeRange: 0.05
+    randomPitchRange: 0.15
+    randomVolumeRange: 0
     mixerGroup: {fileID: -3511042830404213378, guid: e08b809e0c0af76478388545eef4b2dd, type: 2}
     spamThreshold: 0.1
     lastPlayedTime: 0
@@ -101,8 +101,8 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     useRandomVariance: 1
-    randomPitchRange: 0
-    randomVolumeRange: 0.05
+    randomPitchRange: 0.15
+    randomVolumeRange: 0
     mixerGroup: {fileID: -3511042830404213378, guid: e08b809e0c0af76478388545eef4b2dd, type: 2}
     spamThreshold: 0.1
     lastPlayedTime: 0

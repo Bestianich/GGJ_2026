@@ -411,10 +411,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6793751514725530236, guid: 34b80ab22a024ed45876583d22c6e814, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -644,7 +640,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1353441820006997840, guid: 96b95114a2b827f41a9d4e03346ad7f4, type: 3}
       propertyPath: _zoomClamp.y
-      value: 60
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1353441820006997840, guid: 96b95114a2b827f41a9d4e03346ad7f4, type: 3}
       propertyPath: _objectHolder
@@ -652,7 +648,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3023152200119896481, guid: 96b95114a2b827f41a9d4e03346ad7f4, type: 3}
       propertyPath: field of view
-      value: 50
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 3555753995160857866, guid: 96b95114a2b827f41a9d4e03346ad7f4, type: 3}
       propertyPath: m_Name
