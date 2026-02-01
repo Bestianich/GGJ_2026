@@ -44,8 +44,12 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _edge_power: 0.25
+    - _shadow_power: 0.5
+    - _strenght: 20
     m_Colors:
     - _Color: {r: 0, g: 0, b: 0, a: 0}
+    - _shadow_color: {r: 1, g: 0.8761401, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &8123870256993064275

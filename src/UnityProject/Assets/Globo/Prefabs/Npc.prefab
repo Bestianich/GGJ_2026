@@ -87,7 +87,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 0.8
   _waitTime: 2
-  _distanceRange: 2
+  _distanceRange: 1
+  _allowedMaterial: {fileID: 0}
   IsSnapped: 1
 --- !u!114 &6549551746709444547
 MonoBehaviour:
