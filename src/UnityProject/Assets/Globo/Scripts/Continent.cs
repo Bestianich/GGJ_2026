@@ -81,7 +81,7 @@ public class Continent : MonoBehaviour
         {
             int count = 0;
             yield return new WaitForSeconds(_enrageInterval);
-            while (count < _enrageAmount)
+            while (count < _enrageAmount && _enrageAmount != _enragedCount)
             {
                 var index = Random.Range(0, _entities.Count);
                 if (_entities[index].GetEmotion().Emotion != Emotion.Rage)
@@ -89,19 +89,20 @@ public class Continent : MonoBehaviour
                     _entities[index].UpdateEmotion(Emotion.Rage);
                     count++;
                 }
+
+                yield return null;
             }
             UpdateCount();
         }
-        yield return null;
     }
 
     public void UpdateCount()
     {
-        _enrageAmount = 0;
+        _enragedCount = 0;
         foreach (var entity in _entities)
         {
             if (entity.GetEmotion().Emotion == Emotion.Rage)
-                _enrageAmount++;
+                _enragedCount++;
         }
     }
     private void OnDrawGizmos()
