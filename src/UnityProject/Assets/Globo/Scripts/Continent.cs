@@ -10,7 +10,13 @@ public class Continent : MonoBehaviour
     [SerializeField] private MeshRenderer _meshRenderer;
 
 
-
+    private void Awake()
+    {
+        if(_meshRenderer == null)
+            _meshRenderer = GetComponent<MeshRenderer>();
+        if(_spawnPoint == null)
+            _spawnPoint = transform;
+    }
 
     public float FindDistance(Vector3 point)
     {
