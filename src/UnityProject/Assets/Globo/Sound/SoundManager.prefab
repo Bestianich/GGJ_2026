@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8578054007567948716}
   - component: {fileID: 2170751600909623848}
   - component: {fileID: 6793751514725530236}
+  - component: {fileID: 4701332427941860050}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: SoundManager
@@ -133,6 +134,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ae57e9fb6d013c4cabd50156e635d44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4701332427941860050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447357366960505348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a060ec0d32e1a4469560d605d470530, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TotalNPC: 0
+  EnragedNPC: 0
+  EnragedPercentage: 0
+  MildEnragedPercentage: 25
+  StrongEnragedPercentage: 50
+  NeutralOSTName: OST_Neutral
+  MildEnragedlOSTName: OST_MildAngry
+  StrongEnragedOSTName: OST_StrongAngry
+  FadeDuration: 0.5
+  MinTimeSinceChange: 5
+  Continents:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1001 &438089453861532026
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class MusicChanger : MonoBehaviour
 {
-    [SerializeField] int TotalNPC = 0;
-    [SerializeField] int EnragedNPC = 0;
+    [SerializeField] float TotalNPC = 0;
+    [SerializeField] float EnragedNPC = 0;
     [SerializeField] float EnragedPercentage = 0;
-    [SerializeField] bool TotalNPCCounted = false;
+    bool TotalNPCCounted = false;
     [Header("Audio Setup")]
     [SerializeField] float MildEnragedPercentage = 25;
     [SerializeField] float StrongEnragedPercentage = 50;
@@ -30,27 +30,30 @@ public class MusicChanger : MonoBehaviour
 
     private void PlayMusic()
     {
-        Debug.Log("PlayMusic Called");
         if (Time.time > lasttimeSinceChange + MinTimeSinceChange)
         {
-            Debug.Log("Music time change");
             if (EnragedPercentage >= MildEnragedPercentage)
             {
-                if (EnragedPercentage >= MildEnragedPercentage)
+                if (EnragedPercentage >= StrongEnragedPercentage)
                 {
                     GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().PlayMusicWithFade(StrongEnragedOSTName, FadeDuration);
+                    TimeSinceLastChange();
 
                 }
                 else
                 {
                     GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().PlayMusicWithFade(MildEnragedlOSTName, FadeDuration);
+                    TimeSinceLastChange();
                 }
             }
-            TimeSinceLastChange();
+            
+            else
+            {
+                GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().PlayMusicWithFade(NeutralOSTName, FadeDuration);
+                TimeSinceLastChange();
+            }
         }
-        else { 
-            GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().PlayMusicWithFade(NeutralOSTName, FadeDuration); 
-            TimeSinceLastChange(); }
+
     }
 
     private void CountEnraged()
@@ -64,13 +67,15 @@ public class MusicChanger : MonoBehaviour
             TotalNPCCounted = true;
         }
 
-
+        EnragedNPC = 0;
         foreach (Continent continent in Continents)
         {
-            Debug.Log("Numero di NPC arrabbiati: " + continent._enragedCount);
             EnragedNPC += continent._enragedCount;
+            EnragedPercentage = (EnragedNPC / TotalNPC) * 100;
         }
-        EnragedPercentage = EnragedNPC / TotalNPC * 100;
+        
+        
+        
     }
 
     private void TimeSinceLastChange()
