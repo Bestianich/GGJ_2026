@@ -43,6 +43,7 @@ public class EntityDrag : MonoBehaviour
         _lastScale = transform.localScale;
         
         transform.localScale *= _sizeIncrease;
+        _entity.StopNextPoint();
         _entity.StopAllCoroutines();
     }
     
