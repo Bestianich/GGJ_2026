@@ -34,4 +34,15 @@ using UnityEngine;
             }
             return cont;
         }
+
+        public Continent FindContinentWithMesh(MeshRenderer mesh)
+        {
+            foreach (var continent in _continents)
+            {
+                Debug.Log(mesh.name);
+                if(continent.GetMeshRenderer() == mesh)
+                    return continent;
+            }
+            return SearchContinents(mesh.transform.position);
+        }
     }

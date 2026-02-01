@@ -26,8 +26,6 @@ public class EntityDrag : MonoBehaviour
 
     public void Update()
     {
-        var mp=Input.mousePosition;
-        
         if (_isDragging)
         {
             transform.position = _camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, _dragDistance));
@@ -37,22 +35,23 @@ public class EntityDrag : MonoBehaviour
     public void OnMouseDown()
     {
         Debug.Log("OnMouseDown");
-        _entity.IsSnapped = false;
+        _entity.IsDragged = true;
         _isDragging = true;
         _lastParent = transform.parent;
         _lastScale = transform.localScale;
         
         transform.localScale *= _sizeIncrease;
-        _entity.StopAllCoroutines();
+        _entity.StopNextPoint();
     }
     
 
     public void OnMouseUp()
     {
-        _entity.IsSnapped = true;
+        _entity.IsDragged = false;
         _isDragging = false;
         transform.localScale = _lastScale;
         _entity.UpdateContinent();
+        _entity.StartRandomPoint();
         
     }
     
