@@ -54,12 +54,12 @@ public class GlobeController : MonoBehaviour
            _globePivot.Rotate(Vector3.right, y, Space.World);
         }
 
-        if (Input.GetMouseButtonUp(1))
-        {
-            var mouseDelta = Input.mousePosition - _lastMousePosition;
-            Vector3 torque = new Vector3( mouseDelta.y , -mouseDelta.x , 0) * _dragForce;
-            _rb.AddTorque(mouseDelta , ForceMode.Acceleration);
-        }
+        // if (Input.GetMouseButtonUp(1))
+        // {
+        //     var mouseDelta = Input.mousePosition - _lastMousePosition;
+        //     Vector3 torque = new Vector3( mouseDelta.y , -mouseDelta.x , 0) * _dragForce;
+        //     _rb.AddTorque(mouseDelta , ForceMode.Acceleration);
+        // }
         if (Input.GetKeyDown(KeyCode.Space)) ;
 
     }

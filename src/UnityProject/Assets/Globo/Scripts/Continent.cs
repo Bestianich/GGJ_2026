@@ -4,30 +4,33 @@ using UnityEngine;
 
 public class Continent : MonoBehaviour
 {
-    [SerializeField] private Collider _collider;
     [SerializeField] private List<Entity> _entities;
-    [SerializeField] private Spawner _spawner;
+    [SerializeField] private Transform _spawnPoint;
+    [SerializeField] private float _range;
+    [SerializeField] private MeshRenderer _meshRenderer;
 
-    private void Start()
+
+
+
+    public float FindDistance(Vector3 point)
     {
-        _entities = _spawner.Spawn();
-    }
-    
-    
-    private void OnTriggerEnter(Collider other)
-    {
-        var entity = other.GetComponent<Entity>();
-        if(entity == null)
-            return;
-        _entities.Add(entity);
+        return Vector3.Distance(transform.position, point);
     }
 
-    private void OnTriggerExit(Collider other)
+    public MeshRenderer GetMeshRenderer()
     {
-        var entity = other.GetComponent<Entity>();
-        if(entity == null)
-            return;
-        _entities.Remove(entity);
+        return _meshRenderer;
+    }
+    
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(_spawnPoint.position, 0.5f);
+        foreach (Entity entity in _entities)
+        {
+            Gizmos.DrawRay(entity.transform.position, _spawnPoint.position - entity.transform.position);
+        }
     }
     
 }

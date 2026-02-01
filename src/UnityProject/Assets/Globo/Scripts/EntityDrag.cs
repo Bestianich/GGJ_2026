@@ -52,6 +52,8 @@ public class EntityDrag : MonoBehaviour
         _entity.IsSnapped = true;
         _isDragging = false;
         transform.localScale = _lastScale;
+        _entity.UpdateContinent();
+        
     }
     
 }

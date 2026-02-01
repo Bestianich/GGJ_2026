@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Npc
   - SoundManager
+  - Water
   layers:
   - Default
   - TransparentFX
