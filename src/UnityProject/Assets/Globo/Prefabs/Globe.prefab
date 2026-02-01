@@ -965,8 +965,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entities: []
   _enragedCount: 0
-  _enrageInterval: 0
-  _enrageAmount: 0
+  _enrageInterval: 10
+  _enrageAmount: 1
   _continetCenter: {fileID: 0}
   _spawners:
   - {fileID: 8513117516776064444}
@@ -1015,8 +1015,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entities: []
   _enragedCount: 0
-  _enrageInterval: 0
-  _enrageAmount: 0
+  _enrageInterval: 10
+  _enrageAmount: 1
   _continetCenter: {fileID: 0}
   _spawners:
   - {fileID: 142259351392731309}
@@ -1074,8 +1074,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entities: []
   _enragedCount: 0
-  _enrageInterval: 0
-  _enrageAmount: 0
+  _enrageInterval: 10
+  _enrageAmount: 1
   _continetCenter: {fileID: 0}
   _spawners:
   - {fileID: 8270695241066409752}
@@ -1129,8 +1129,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entities: []
   _enragedCount: 0
-  _enrageInterval: 0
-  _enrageAmount: 0
+  _enrageInterval: 10
+  _enrageAmount: 1
   _continetCenter: {fileID: 0}
   _spawners:
   - {fileID: 4896907398895295184}
