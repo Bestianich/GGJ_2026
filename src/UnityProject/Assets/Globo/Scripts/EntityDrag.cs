@@ -34,8 +34,7 @@ public class EntityDrag : MonoBehaviour
     }
     public void OnMouseDown()
     {
-        if(_isDragging)
-            Drop();
+        
         Debug.Log("OnMouseDown");
         _entity.IsDragged = true;
         _isDragging = true;
@@ -54,8 +53,20 @@ public class EntityDrag : MonoBehaviour
         
         _entity.StartRandomPoint();
         transform.localScale /= _sizeIncrease;
+       
+        return;
+    }
+
+    public void OnMouseUp()
+    {
+        _isDragging = false;
+        _entity.IsDragged = false;
+        _isDragging = false;
+        _entity.UpdateContinent();
+
+        _entity.StartRandomPoint();
+        transform.localScale /= _sizeIncrease;
         Cursor.lockState = CursorLockMode.Confined;
         return;
     }
-    
 }
