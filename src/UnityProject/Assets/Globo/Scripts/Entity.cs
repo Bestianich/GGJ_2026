@@ -57,10 +57,10 @@ using UnityEngine;
 
         public void CheckAction()
         {
+            var entity = AssignedContinent.NearestEntity(transform.position, _rangeInteraction);
             switch (_activeEmotion.Emotion)
             {
                 case Emotion.Rage:
-                    var entity = AssignedContinent.NearestEntity(transform.position, _rangeInteraction);
                     if (entity == null)
                     {
                         _currentSteps++;
@@ -68,11 +68,15 @@ using UnityEngine;
                             UpdateEmotion(Emotion.Sadness);
                         break;
                     }
-                    if(entity._activeEmotion.Emotion == Emotion.Happiness)
+                    if(entity._activeEmotion.Emotion != Emotion.Rage)
                         entity.UpdateEmotion(Emotion.Rage);
                     
                     break;
                 case Emotion.Sadness:
+                    if(entity == null)
+                        break;
+                    if(entity._activeEmotion.Emotion == Emotion.Happiness)
+                        entity.UpdateEmotion(Emotion.Sadness);
                     break;
             }
             
