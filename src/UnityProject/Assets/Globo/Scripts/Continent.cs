@@ -36,6 +36,11 @@ public class Continent : MonoBehaviour
         _entities.Add(entity);
     }
 
+    public void RemoveEntity(Entity entity)
+    {
+        _entities.Remove(entity);
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
