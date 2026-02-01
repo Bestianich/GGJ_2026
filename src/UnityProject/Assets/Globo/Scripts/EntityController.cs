@@ -14,7 +14,8 @@ public class EntityController : MonoBehaviour
         private Transform _nextPoint;
         private Coroutine _randomPointCoroutine;
 
-        [FormerlySerializedAs("_snapped")] public bool IsSnapped = true;
+        
+        public bool IsDragged = false;
         private bool _reachedPoint = true;
 
         private void Start()
@@ -25,26 +26,31 @@ public class EntityController : MonoBehaviour
         private void Update()
         {
            // transform.up = transform.position - GlobeController.Instance.GlobePivot.position;
-           if(IsSnapped)
+           if(!IsDragged)
                 SnapToSurface();
            if(_reachedPoint && _randomPointCoroutine == null) 
               _randomPointCoroutine = StartCoroutine(GenerateRandomPoint());
-           if(IsSnapped || _nextPoint != null)
-            Move();
+           Move();
         }
 
         private void SnapToSurface()
         {
             Vector3 direction = transform.position - GlobeController.Instance.GlobePivot.position;
             transform.position = GlobeController.Instance.GlobePivot.position + direction.normalized * GlobeController.Instance.GlobeRadius;
-            transform.up = direction.normalized;
-            transform.SetParent(GlobeController.Instance.GlobePivot);
+            // transform.up = direction.normalized;
+            if (Physics.Raycast(this.transform.position, GlobeController.Instance.GlobePivot.position - transform.position, out RaycastHit hit, Mathf.Infinity))
+            {
+                transform.up = hit.normal;
+                transform.SetParent(GlobeController.Instance.GlobePivot);
+
+            }
         }
 
 
         private void Move()
         {
-            Debug.Log(_nextPoint);
+            if(IsDragged || _nextPoint == null)
+                return;
             if (Vector3.Distance(transform.position, _nextPoint.position) < 0.1f)
             {
                 _reachedPoint = true;
@@ -74,16 +80,31 @@ public class EntityController : MonoBehaviour
             yield return null;
         }
 
-        public void UpdateContinent()
+        public void UpdateContinent()   
         {
-            _assignedContinent = ContinentManager.Instance.SearchContinents(transform.position);
+            //_assignedContinent = ContinentManager.Instance.SearchContinents(transform.position);
+            if (Physics.Raycast(this.transform.position, GlobeController.Instance.GlobePivot.position - transform.position, out RaycastHit hit, Mathf.Infinity , 1 << 7))
+            {
+                Debug.Log(hit.transform.name);
+                _assignedContinent = ContinentManager.Instance.FindContinentWithMesh(hit.collider.GetComponent<MeshRenderer>());
+                Debug.DrawRay(transform.position , -transform.up * 5f , Color.green);
+            }
         }
 
         public void StopNextPoint()
         {
-            _reachedPoint = true;
             Destroy(_nextPoint.gameObject);
+            StopCoroutine(_randomPointCoroutine);
+            _randomPointCoroutine = null;
+            _reachedPoint = true;
         }
+
+        public void StartRandomPoint()
+        {
+            _randomPointCoroutine = StartCoroutine(GenerateRandomPoint());
+        }
+        
+        
 
     
 

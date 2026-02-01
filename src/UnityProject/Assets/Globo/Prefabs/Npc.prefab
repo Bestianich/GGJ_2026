@@ -86,10 +86,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 0.8
-  _waitTime: 2
+  _waitTime: 0.1
   _distanceRange: 1
-  _allowedMaterial: {fileID: 0}
-  IsSnapped: 1
+  _assignedContinent: {fileID: 0}
+  IsDragged: 0
 --- !u!114 &6549551746709444547
 MonoBehaviour:
   m_ObjectHideFlags: 0
