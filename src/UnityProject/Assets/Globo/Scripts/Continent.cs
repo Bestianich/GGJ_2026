@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 
+[RequireComponent(typeof(MeshCollider))]
 public class Continent : MonoBehaviour
 {
     [SerializeField] public List<Entity> _entities;
@@ -14,7 +15,8 @@ public class Continent : MonoBehaviour
     [SerializeField] private List<Spawner> _spawners;
     [SerializeField] private float _range;
     [SerializeField] private MeshRenderer _meshRenderer;
-
+    [FormerlySerializedAs("_GizmoColor")] [SerializeField] private Color _gizmoColor = Color.yellow;
+    public MeshCollider MeshCollider;
 
     private void Awake()
     {
@@ -29,6 +31,7 @@ public class Continent : MonoBehaviour
                 _entities.AddRange(spawner.Spawn());
             }
         }
+        MeshCollider = GetComponent<MeshCollider>();
     }
 
     private void Start()
@@ -38,7 +41,7 @@ public class Continent : MonoBehaviour
     
     public float FindDistance(Vector3 point)
     {
-        return Vector3.Distance(transform.position, point);
+        return Vector3.Distance(_continetCenter.position, point);
     }
 
     public MeshRenderer GetMeshRenderer()
@@ -115,7 +118,9 @@ public class Continent : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = _gizmoColor;
+        if(_continetCenter == null)
+            return;
         Gizmos.DrawSphere(_continetCenter.position, 0.5f);
         foreach (Entity entity in _entities)
         {

@@ -66,7 +66,6 @@ public class EntityDrag : MonoBehaviour
 
         _entity.StartRandomPoint();
         transform.localScale /= _sizeIncrease;
-        Cursor.lockState = CursorLockMode.Confined;
         return;
     }
 }

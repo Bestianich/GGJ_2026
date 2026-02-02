@@ -58,20 +58,21 @@ public class EntityController : MonoBehaviour
                 _entity.CheckAction();
                 return;
             }
-            transform.position = Vector3.Lerp(transform.position, _nextPoint.transform.position, _speed * Time.deltaTime);
+            transform.position =  Vector3.MoveTowards(transform.position, _nextPoint.position, _speed * Time.deltaTime);
         }
 
         private IEnumerator GenerateRandomPoint()
         {
             yield return new WaitForSeconds(_waitTime);
-            Vector3 point =  (UnityEngine.Random.onUnitSphere * GlobeController.Instance.GlobeRadius ) - GlobeController.Instance.GlobePivot.position;
+            Vector3 point = UnityEngine.Random.onUnitSphere * GlobeController.Instance.GlobeRadius + GlobeController.Instance.GlobePivot.position;
             
-            while (!_entity.AssignedContinent.GetMeshRenderer().bounds.Contains(point))
+            while (!IsInsideMesh(point , _entity.AssignedContinent.MeshCollider))
             {
-                point = (UnityEngine.Random.onUnitSphere * GlobeController.Instance.GlobeRadius ) - GlobeController.Instance.GlobePivot.position;
+                point =  UnityEngine.Random.onUnitSphere * GlobeController.Instance.GlobeRadius + GlobeController.Instance.GlobePivot.position;
                 yield return null;
             }
-            
+            //var offset = transform.position - GlobeController.Instance.GlobePivot.position;
+            //point = GlobeController.Instance.GlobePivot.position + offset.normalized * GlobeController.Instance.GlobeRadius;
             GameObject pointGO = new GameObject();
             pointGO.transform.position = point;
             pointGO.transform.parent = GlobeController.Instance.GlobePivot;
@@ -80,6 +81,25 @@ public class EntityController : MonoBehaviour
             _randomPointCoroutine = null;
             yield return null;
         }
+
+        private bool IsInsideMesh(Vector3 point , MeshCollider meshCollider)
+        {
+            Vector3 direction = GlobeController.Instance.GlobePivot.position - point;
+            Ray ray = new Ray(point, direction);
+            Debug.DrawRay(point, direction * 5f , Color.magenta);
+            int hitCount = 0;
+            RaycastHit[] hits = Physics.RaycastAll(ray, 5f , (1 << 7) | (1 << 8));
+            foreach (RaycastHit hit in hits)
+            {
+                if(hit.transform.CompareTag("Water"))
+                    break;
+                if (hit.collider == meshCollider)
+                    hitCount++;
+            }
+
+            return hitCount % 2 == 1;
+        }
+        
 
         public void UpdateContinent()   
         {
@@ -111,18 +131,18 @@ public class EntityController : MonoBehaviour
 
     
 
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.yellow;
             if (GlobeController.Instance == null)
                 return;
             Gizmos.DrawLine(GlobeController.Instance.GlobePivot.position, transform.position - GlobeController.Instance.GlobePivot.position );
             
-            Gizmos.color = Color.green;
+            Gizmos.color = Color.red;
             if(_nextPoint == null)
                 return;
             Gizmos.DrawSphere(_nextPoint.position ,0.1f);
-            Gizmos.DrawRay(transform.position , (_nextPoint.position - GlobeController.Instance.GlobePivot.position) -transform.position );
+            Gizmos.DrawRay(transform.position ,   _nextPoint.position - transform.position );
         }
         
     }

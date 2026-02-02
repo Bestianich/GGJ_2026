@@ -86,7 +86,7 @@ using UnityEngine;
         {
             return _activeEmotion;
         }
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
             Gizmos.color = _activeEmotion.GizmoColor;
             if(_maskTransform  == null)
