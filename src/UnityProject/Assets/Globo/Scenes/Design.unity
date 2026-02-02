@@ -428,7 +428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcPrefab: {fileID: 1813991776180123353, guid: e0bd918221834a142902a246ac0a7e47, type: 3}
-  _spawnAmount: 5
+  _spawnAmount: 0
   _spawnPoint: {fileID: 206730534}
 --- !u!1 &377374031
 GameObject:
@@ -475,7 +475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcPrefab: {fileID: 1813991776180123353, guid: e0bd918221834a142902a246ac0a7e47, type: 3}
-  _spawnAmount: 5
+  _spawnAmount: 0
   _spawnPoint: {fileID: 377374032}
 --- !u!1 &440894444
 GameObject:
@@ -522,7 +522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcPrefab: {fileID: 1813991776180123353, guid: e0bd918221834a142902a246ac0a7e47, type: 3}
-  _spawnAmount: 5
+  _spawnAmount: 0
   _spawnPoint: {fileID: 440894445}
 --- !u!1 &471074027
 GameObject:
@@ -690,7 +690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcPrefab: {fileID: 1813991776180123353, guid: e0bd918221834a142902a246ac0a7e47, type: 3}
-  _spawnAmount: 5
+  _spawnAmount: 0
   _spawnPoint: {fileID: 649721098}
 --- !u!1 &867210086
 GameObject:
@@ -913,7 +913,7 @@ Transform:
   m_GameObject: {fileID: 1618843933}
   serializedVersion: 2
   m_LocalRotation: {x: 0.00027046376, y: 0.99999905, z: -0.00135263, w: 0.000017142318}
-  m_LocalPosition: {x: -1.9, y: -28.3, z: -20.4}
+  m_LocalPosition: {x: 1.1, y: -126.8, z: 11.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -932,7 +932,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcPrefab: {fileID: 1813991776180123353, guid: e0bd918221834a142902a246ac0a7e47, type: 3}
-  _spawnAmount: 5
+  _spawnAmount: 2
   _spawnPoint: {fileID: 1618843934}
 --- !u!1 &1739225781
 GameObject:
@@ -979,7 +979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcPrefab: {fileID: 1813991776180123353, guid: e0bd918221834a142902a246ac0a7e47, type: 3}
-  _spawnAmount: 5
+  _spawnAmount: 0
   _spawnPoint: {fileID: 1739225782}
 --- !u!1001 &1806994703
 PrefabInstance:
@@ -1095,7 +1095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcPrefab: {fileID: 1813991776180123353, guid: e0bd918221834a142902a246ac0a7e47, type: 3}
-  _spawnAmount: 5
+  _spawnAmount: 1
   _spawnPoint: {fileID: 1817941024}
 --- !u!1 &1941912592
 GameObject:
@@ -1142,7 +1142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcPrefab: {fileID: 1813991776180123353, guid: e0bd918221834a142902a246ac0a7e47, type: 3}
-  _spawnAmount: 5
+  _spawnAmount: 0
   _spawnPoint: {fileID: 1941912593}
 --- !u!1001 &1957003628
 PrefabInstance:
@@ -13285,7 +13285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcPrefab: {fileID: 1813991776180123353, guid: e0bd918221834a142902a246ac0a7e47, type: 3}
-  _spawnAmount: 5
+  _spawnAmount: 2
   _spawnPoint: {fileID: 9218372268015434239}
 --- !u!33 &3729565203973237089
 MeshFilter:
@@ -26258,7 +26258,7 @@ MonoBehaviour:
   _enragedCount: 0
   _enrageInterval: 0
   _enrageAmount: 0
-  _continetCenter: {fileID: 9218372268015434239}
+  _continetCenter: {fileID: 1618843934}
   _spawners:
   - {fileID: 3725166391403808838}
   _range: 0
@@ -28332,7 +28332,7 @@ MonoBehaviour:
   _enrageAmount: 0
   _continetCenter: {fileID: 1618843934}
   _spawners:
-  - {fileID: 1618843935}
+  - {fileID: 3725166391403808838}
   _range: 0
   _meshRenderer: {fileID: 0}
   _gizmoColor: {r: 0.2774439, g: 1, b: 0, a: 1}
