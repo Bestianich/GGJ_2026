@@ -28,7 +28,7 @@ public class Continent : MonoBehaviour
         {
             foreach (var spawner in _spawners)
             {
-                _entities.AddRange(spawner.Spawn());
+                spawner.Spawn();
             }
         }
         MeshCollider = GetComponent<MeshCollider>();
@@ -41,7 +41,7 @@ public class Continent : MonoBehaviour
     
     public float FindDistance(Vector3 point)
     {
-        return Vector3.Distance(_continetCenter.position, point);
+        return Mathf.Abs(Vector3.Distance(_continetCenter.position, point));
     }
 
     public MeshRenderer GetMeshRenderer()
@@ -51,7 +51,9 @@ public class Continent : MonoBehaviour
 
     public void AddEntity(Entity entity)
     {
+        Debug.Log("Added entity: " + entity.name + " | In Continent: " + transform.name);
         _entities.Add(entity);
+        entity.transform.parent = transform;
         UpdateCount();
     }
 
@@ -68,9 +70,6 @@ public class Continent : MonoBehaviour
         foreach (var entity in _entities)
         {
             var temp = Vector3.Distance(point , entity.transform.position);
-            Debug.Log(temp);
-            Debug.Log(range);
-            Debug.Log(temp > range);
             if (temp > range || temp == 0)
                 continue;
             if (distance <= temp)

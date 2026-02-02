@@ -25,10 +25,9 @@ using UnityEngine;
         {
             if(Input.GetAxis("Mouse ScrollWheel") == 0)
                 return;
-            Debug.Log(Input.mouseScrollDelta.y);
+            
             _currentZoom -= Input.mouseScrollDelta.y * _zoomSpeed * Time.deltaTime;
             _currentZoom = Mathf.Clamp(_currentZoom, _zoomClamp.x, _zoomClamp.y);
-            Debug.Log(_currentZoom);
             _camera.transform.position = new Vector3(_camera.transform.position.x, _camera.transform.position.y, _currentZoom);
         }
     }

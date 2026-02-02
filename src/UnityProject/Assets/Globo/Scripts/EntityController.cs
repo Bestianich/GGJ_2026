@@ -82,7 +82,7 @@ public class EntityController : MonoBehaviour
             yield return null;
         }
 
-        private bool IsInsideMesh(Vector3 point , MeshCollider meshCollider)
+        public bool IsInsideMesh(Vector3 point , MeshCollider meshCollider)
         {
             Vector3 direction = GlobeController.Instance.GlobePivot.position - point;
             Ray ray = new Ray(point, direction);
@@ -107,9 +107,9 @@ public class EntityController : MonoBehaviour
             if (Physics.Raycast(this.transform.position, GlobeController.Instance.GlobePivot.position - transform.position, out RaycastHit hit, Mathf.Infinity , 1 << 7))
             {
                 Debug.Log(hit.transform.name);
-                _entity.AssignedContinent.RemoveEntity(this.GetComponent<Entity>());
-                _entity.AssignedContinent.AddEntity(this.gameObject.GetComponent<Entity>());
+                _entity.AssignedContinent.RemoveEntity(_entity);
                 _entity.AssignedContinent = ContinentManager.Instance.FindContinentWithMesh(hit.collider.GetComponent<MeshRenderer>());
+                _entity.AssignedContinent.AddEntity(_entity);
                 Debug.DrawRay(transform.position , -transform.up * 5f , Color.green);
             }
         }
