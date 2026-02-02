@@ -10,9 +10,9 @@ public class EntityDrag : MonoBehaviour
     [SerializeField] private float _sizeIncrease;
     [SerializeField] private LayerMask _layerMask;
     [SerializeField] private float _dragDistance = 5f;
+    [SerializeField] private float _offset = 5f;
     private EntityController _entity;
     private Vector3 _screenPoint;
-    private Vector3 _offset;
     private Vector3 _lastScale;
 
     private bool _isDragging;
@@ -28,8 +28,11 @@ public class EntityDrag : MonoBehaviour
     {
         if (_isDragging)
         {
-            transform.position = _camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, _dragDistance));
+            
+            
+            transform.position = _camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x , Input.mousePosition.y, _offset)); ;
             transform.up = _camera.transform.up;
+            
         }
     }
     public void OnMouseDown()
@@ -40,7 +43,8 @@ public class EntityDrag : MonoBehaviour
         _isDragging = true;
         //_lastParent = transform.parent;
         transform.localScale *= _sizeIncrease;
-        transform.parent = _camera.transform;
+        //transform.parent = _camera.transform;
+        transform.parent = null;
         _entity.StopNextPoint();
     }
 
@@ -61,7 +65,6 @@ public class EntityDrag : MonoBehaviour
     {
         _isDragging = false;
         _entity.IsDragged = false;
-        _isDragging = false;
         _entity.UpdateContinent();
 
         _entity.StartRandomPoint();
