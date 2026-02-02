@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Globo.Scripts;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -10,6 +11,7 @@ public class EntityController : MonoBehaviour
         [SerializeField] private float _speed;
         [SerializeField] private float _waitTime;
         [SerializeField] private float _distanceRange = 2f;
+        [SerializeField] public Animator Animator;
         private Transform _nextPoint;
         private Coroutine _randomPointCoroutine;
 
@@ -58,11 +60,14 @@ public class EntityController : MonoBehaviour
                 _entity.CheckAction();
                 return;
             }
+            
             transform.position =  Vector3.MoveTowards(transform.position, _nextPoint.position, _speed * Time.deltaTime);
         }
 
         private IEnumerator GenerateRandomPoint()
         {
+            
+            Animator.SetBool("IsRunning", false);
             yield return new WaitForSeconds(_waitTime);
             Vector3 point = UnityEngine.Random.onUnitSphere * GlobeController.Instance.GlobeRadius + GlobeController.Instance.GlobePivot.position;
             
@@ -79,9 +84,10 @@ public class EntityController : MonoBehaviour
             _nextPoint = pointGO.transform;
             _reachedPoint = false; 
             _randomPointCoroutine = null;
+            Animator.SetBool("IsRunning", true);
             yield return null;
         }
-
+        
         public bool IsInsideMesh(Vector3 point , MeshCollider meshCollider)
         {
             Vector3 direction = GlobeController.Instance.GlobePivot.position - point;
@@ -116,6 +122,8 @@ public class EntityController : MonoBehaviour
 
         public void StopNextPoint()
         {
+            if(_nextPoint == null || _randomPointCoroutine == null)
+                return;
             Destroy(_nextPoint.gameObject);
             StopCoroutine(_randomPointCoroutine);
             _randomPointCoroutine = null;

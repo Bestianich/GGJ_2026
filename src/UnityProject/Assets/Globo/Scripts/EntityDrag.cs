@@ -46,6 +46,7 @@ public class EntityDrag : MonoBehaviour
         //transform.parent = _camera.transform;
         transform.parent = null;
         _entity.StopNextPoint();
+        _entity.Animator.SetBool("IsGrabbed" , true);
     }
 
     public void Drop()
@@ -69,6 +70,7 @@ public class EntityDrag : MonoBehaviour
 
         _entity.StartRandomPoint();
         transform.localScale /= _sizeIncrease;
-        return;
+        _entity.Animator.SetBool("IsGrabbed" , false);
+        
     }
 }

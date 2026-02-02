@@ -68,8 +68,13 @@ using UnityEngine;
                             UpdateEmotion(Emotion.Sadness);
                         break;
                     }
-                    if(entity._activeEmotion.Emotion != Emotion.Rage)
+
+                    if (entity._activeEmotion.Emotion != Emotion.Rage)
+                    {
+                        GetComponent<EntityController>().Animator.SetTrigger("IsAngry");
                         entity.UpdateEmotion(Emotion.Rage);
+                        
+                    }
                     
                     break;
                 case Emotion.Sadness:
