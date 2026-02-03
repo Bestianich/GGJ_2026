@@ -30,7 +30,7 @@ public class EntityController : MonoBehaviour
            // transform.up = transform.position - GlobeController.Instance.GlobePivot.position;
            if(!IsDragged)
                 SnapToSurface();
-           if(_reachedPoint && _randomPointCoroutine == null) 
+           if((_reachedPoint && _randomPointCoroutine == null) && !IsDragged) 
               _randomPointCoroutine = StartCoroutine(GenerateRandomPoint());
            Move();
         }
@@ -129,10 +129,10 @@ public class EntityController : MonoBehaviour
 
         public void StopNextPoint()
         {
-            if(_nextPoint == null || _randomPointCoroutine == null)
-                return;
-            Destroy(_nextPoint.gameObject);
-            StopCoroutine(_randomPointCoroutine);
+            if(_nextPoint != null)
+                Destroy(_nextPoint.gameObject);
+            if(_randomPointCoroutine != null)
+                StopCoroutine(_randomPointCoroutine);
             _randomPointCoroutine = null;
             _reachedPoint = true;
         }

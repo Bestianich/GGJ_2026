@@ -41,12 +41,11 @@ public class EntityDrag : MonoBehaviour
         Debug.Log("OnMouseDown");
         _entity.IsDragged = true;
         _isDragging = true;
-        //_lastParent = transform.parent;
         transform.localScale *= _sizeIncrease;
-        //transform.parent = _camera.transform;
         transform.parent = null;
         _entity.StopNextPoint();
         _entity.Animator.SetBool("IsGrabbed" , true);
+        SoundManager.Instance.PlaySound("SFX_Pickup");
     }
 
     public void Drop()
@@ -71,6 +70,7 @@ public class EntityDrag : MonoBehaviour
         _entity.StartRandomPoint();
         transform.localScale /= _sizeIncrease;
         _entity.Animator.SetBool("IsGrabbed" , false);
+        SoundManager.Instance.PlaySound("SFX_Drop");
         
     }
 }
