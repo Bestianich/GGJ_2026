@@ -37,15 +37,10 @@ public class EntityController : MonoBehaviour
 
         private void SnapToSurface()
         {
-            Vector3 direction = transform.position - GlobeController.Instance.GlobePivot.position;
-            transform.position = GlobeController.Instance.GlobePivot.position + direction.normalized * GlobeController.Instance.GlobeRadius;
-            // transform.up = direction.normalized;
-            if (Physics.Raycast(this.transform.position, GlobeController.Instance.GlobePivot.position - transform.position, out RaycastHit hit, Mathf.Infinity))
-            {
-                transform.up = hit.normal;
-                transform.SetParent(_entity.AssignedContinent.transform);
-
-            }
+            Vector3 surfaceNormal = (transform.position - GlobeController.Instance.GlobePivot.position).normalized;
+            transform.position = GlobeController.Instance.GlobePivot.position + surfaceNormal * GlobeController.Instance.GlobeRadius;
+            transform.up = surfaceNormal;
+            RotateTowardsPoint();
         }
 
 
@@ -60,7 +55,6 @@ public class EntityController : MonoBehaviour
                 _entity.CheckAction();
                 return;
             }
-            
             transform.position =  Vector3.MoveTowards(transform.position, _nextPoint.position, _speed * Time.deltaTime);
         }
 
@@ -87,7 +81,20 @@ public class EntityController : MonoBehaviour
             Animator.SetBool("IsRunning", true);
             yield return null;
         }
-        
+
+        private void RotateTowardsPoint()
+        {
+            if(_nextPoint == null)
+                return;
+            Vector3 targetDirection = (transform.position - _nextPoint.position ).normalized;
+            Vector3 projectedDirection = Vector3.ProjectOnPlane(targetDirection, surfaceNormal).normalized;
+
+            if (projectedDirection.sqrMagnitude > 0.001f) // Check per evitare errori con vettori zero
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(projectedDirection, surfaceNormal);
+                transform.rotation = targetRotation;
+            }
+        }
         public bool IsInsideMesh(Vector3 point , MeshCollider meshCollider)
         {
             Vector3 direction = GlobeController.Instance.GlobePivot.position - point;
