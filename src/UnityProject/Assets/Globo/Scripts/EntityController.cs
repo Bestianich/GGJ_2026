@@ -40,7 +40,7 @@ public class EntityController : MonoBehaviour
             Vector3 surfaceNormal = (transform.position - GlobeController.Instance.GlobePivot.position).normalized;
             transform.position = GlobeController.Instance.GlobePivot.position + surfaceNormal * GlobeController.Instance.GlobeRadius;
             transform.up = surfaceNormal;
-            RotateTowardsPoint();
+            RotateTowardsPoint(surfaceNormal);
         }
 
 
@@ -82,7 +82,7 @@ public class EntityController : MonoBehaviour
             yield return null;
         }
 
-        private void RotateTowardsPoint()
+        private void RotateTowardsPoint(Vector3 surfaceNormal)
         {
             if(_nextPoint == null)
                 return;
