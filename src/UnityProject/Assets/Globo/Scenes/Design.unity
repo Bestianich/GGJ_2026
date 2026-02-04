@@ -428,7 +428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcPrefab: {fileID: 1813991776180123353, guid: e0bd918221834a142902a246ac0a7e47, type: 3}
-  _spawnAmount: 0
+  _spawnAmount: 1
   _spawnPoint: {fileID: 206730534}
 --- !u!1 &377374031
 GameObject:
@@ -475,7 +475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcPrefab: {fileID: 1813991776180123353, guid: e0bd918221834a142902a246ac0a7e47, type: 3}
-  _spawnAmount: 0
+  _spawnAmount: 2
   _spawnPoint: {fileID: 377374032}
 --- !u!1 &440894444
 GameObject:
@@ -522,7 +522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcPrefab: {fileID: 1813991776180123353, guid: e0bd918221834a142902a246ac0a7e47, type: 3}
-  _spawnAmount: 0
+  _spawnAmount: 2
   _spawnPoint: {fileID: 440894445}
 --- !u!1 &471074027
 GameObject:
@@ -690,7 +690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcPrefab: {fileID: 1813991776180123353, guid: e0bd918221834a142902a246ac0a7e47, type: 3}
-  _spawnAmount: 0
+  _spawnAmount: 1
   _spawnPoint: {fileID: 649721098}
 --- !u!1 &867210086
 GameObject:
@@ -932,7 +932,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcPrefab: {fileID: 1813991776180123353, guid: e0bd918221834a142902a246ac0a7e47, type: 3}
-  _spawnAmount: 2
+  _spawnAmount: 0
   _spawnPoint: {fileID: 1618843934}
 --- !u!1 &1739225781
 GameObject:
@@ -979,7 +979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcPrefab: {fileID: 1813991776180123353, guid: e0bd918221834a142902a246ac0a7e47, type: 3}
-  _spawnAmount: 0
+  _spawnAmount: 2
   _spawnPoint: {fileID: 1739225782}
 --- !u!1001 &1806994703
 PrefabInstance:
@@ -1095,7 +1095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcPrefab: {fileID: 1813991776180123353, guid: e0bd918221834a142902a246ac0a7e47, type: 3}
-  _spawnAmount: 1
+  _spawnAmount: 5
   _spawnPoint: {fileID: 1817941024}
 --- !u!1 &1941912592
 GameObject:
@@ -1142,7 +1142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcPrefab: {fileID: 1813991776180123353, guid: e0bd918221834a142902a246ac0a7e47, type: 3}
-  _spawnAmount: 0
+  _spawnAmount: 5
   _spawnPoint: {fileID: 1941912593}
 --- !u!1001 &1957003628
 PrefabInstance:
@@ -13285,7 +13285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcPrefab: {fileID: 1813991776180123353, guid: e0bd918221834a142902a246ac0a7e47, type: 3}
-  _spawnAmount: 2
+  _spawnAmount: 0
   _spawnPoint: {fileID: 9218372268015434239}
 --- !u!33 &3729565203973237089
 MeshFilter:
@@ -15277,8 +15277,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entities: []
   _enragedCount: 0
-  _enrageInterval: 0
-  _enrageAmount: 0
+  _enrageInterval: 10
+  _enrageAmount: 1
   _continetCenter: {fileID: 1251147279}
   _spawners:
   - {fileID: 206730535}
@@ -22274,8 +22274,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entities: []
   _enragedCount: 0
-  _enrageInterval: 0
-  _enrageAmount: 0
+  _enrageInterval: 10
+  _enrageAmount: 1
   _continetCenter: {fileID: 1169423983}
   _spawners:
   - {fileID: 440894446}
@@ -26256,8 +26256,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entities: []
   _enragedCount: 0
-  _enrageInterval: 0
-  _enrageAmount: 0
+  _enrageInterval: 10
+  _enrageAmount: 1
   _continetCenter: {fileID: 1618843934}
   _spawners:
   - {fileID: 3725166391403808838}
@@ -28328,8 +28328,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entities: []
   _enragedCount: 0
-  _enrageInterval: 0
-  _enrageAmount: 0
+  _enrageInterval: 10
+  _enrageAmount: 1
   _continetCenter: {fileID: 1618843934}
   _spawners:
   - {fileID: 3725166391403808838}

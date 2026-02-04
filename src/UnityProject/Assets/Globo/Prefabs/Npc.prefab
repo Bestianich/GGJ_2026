@@ -864,7 +864,7 @@ MonoBehaviour:
     MaskObject: {fileID: 0}
     Emotion: 0
     GizmoColor: {r: 0, g: 0, b: 0, a: 0}
-  _rangeInteraction: 10
+  _rangeInteraction: 2
   AssignedContinent: {fileID: 0}
   _maxSteps: 3
 --- !u!114 &3303437133372348787
