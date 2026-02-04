@@ -1,6 +1,7 @@
 # Wo-Globo
 
 ## Screenshots
+<img width="1666" height="930" alt="Splash Art" src="https://github.com/user-attachments/assets/8e7890c2-9368-4eec-8a21-741b051aacd1" />
 
 
 ## About
@@ -14,9 +15,7 @@ This game was made for the Global Game Jam 2026 at [Pisa SteamFactory site](http
 - Scrool Wheel to zoom the Wo-Globo
 
 ## Download / Links
-- Links alle builds (se esterne a questo progetto)
-- Links ai docs (se esterne a questo progetto)
-- Links alla Trello Board/Issues (se esterne a questo progetto)
+- [Drive](https://drive.google.com/drive/folders/11Q57T-sKOJp8bmfr140of8j9LAvNMiJF)
 
 ## Team
 | Name            | Role  | Speciality | GitHub Account                                      |
