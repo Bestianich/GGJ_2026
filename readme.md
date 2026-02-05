@@ -20,8 +20,8 @@ This game was made for the Global Game Jam 2026 at [Pisa SteamFactory site](http
 ## Team
 | Name            | Role  | Speciality | GitHub Account                                      |
 | --------------- | :---: | ---------- | ---------------------------------------- |
-| **Edoardo Tagliati** | Game Designer | Npc Pattern & testing | [Ebbro](https://github.com/Ebbro) |
-| **Cosimo Caroti** | Game Designer | Testing & Sound Manager | [CosimoCaroti](https://github.com/CarotiCosimo) |
+| **Edoardo Tagliati** | Game Designer | Testing & Sound Manager | [Ebbro](https://github.com/Ebbro) |
+| **Cosimo Caroti** | Game Designer | Testing & Npc Pattern| [CosimoCaroti](https://github.com/CarotiCosimo) |
 | **Tommaso Gavagni** | Concept Artist | Wo-Globe concept & Splash Art | [TommasoGavagni](https://github.com/TommasoGavagni) |
 | **Margherita Faina** | Concept Artist | Sky box & props concept | [margheritafaiana4](https://github.com/margheritafaina4) |
 | **Giuseppe Andriani de Vito** | 3D Artist |  Rig & Animations | [giuseppe-andriani](https://github.com/giuseppe-andriani) |
