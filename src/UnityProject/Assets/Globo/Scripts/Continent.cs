@@ -36,8 +36,10 @@ public class Continent : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(PlaceEntities(_entities));
         StartCoroutine(EnrageEntities());
     }
+    
     
     public float FindDistance(Vector3 point)
     {
@@ -48,7 +50,7 @@ public class Continent : MonoBehaviour
     {
         return _meshRenderer;
     }
-
+    
     public void AddEntity(Entity entity)
     {
         Debug.Log("Added entity: " + entity.name + " | In Continent: " + transform.name);
@@ -63,6 +65,23 @@ public class Continent : MonoBehaviour
         UpdateCount();
     }
 
+    public IEnumerator PlaceEntities(List<Entity> entities)
+    {
+        Debug.Log(entities.Count);
+        while (entities.Count <= 0)
+            yield return null;
+        foreach (Entity entity in entities)
+        {
+            Debug.Log(entity.name);
+            Vector3 point = UnityEngine.Random.onUnitSphere * GlobeController.Instance.GlobeRadius + GlobeController.Instance.GlobePivot.position;
+            while(!entity.GetComponent<EntityController>().IsInsideMesh(point, MeshCollider))
+            {
+                point = UnityEngine.Random.onUnitSphere * GlobeController.Instance.GlobeRadius + GlobeController.Instance.GlobePivot.position;
+                yield return null;
+            }
+            entity.transform.position = point;
+        }
+    }
     public Entity NearestEntity(Vector3 point , float range)
     {
         float distance = 0f;
