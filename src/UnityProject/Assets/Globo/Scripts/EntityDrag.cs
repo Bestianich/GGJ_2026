@@ -66,6 +66,11 @@ public class EntityDrag : MonoBehaviour
         _isDragging = false;
         _entity.IsDragged = false;
         _entity.UpdateContinent();
+        Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, 1 << 7))
+        {
+            transform.position = hit.point;
+        }
 
         _entity.StartRandomPoint();
         transform.localScale /= _sizeIncrease;
