@@ -15,7 +15,7 @@ This game was made for the Global Game Jam 2026 at [Pisa SteamFactory site](http
 - Scrool Wheel to zoom the Wo-Globo
 
 ## Download / Links
-- [Drive](https://drive.google.com/drive/folders/11Q57T-sKOJp8bmfr140of8j9LAvNMiJF)
+- [Build](https://drive.google.com/file/d/1kQ0Jif-2RPhLVzG1i2qWZZ4Bl3pikeRv/view?usp=drive_link)
 
 ## Team
 | Name            | Role  | Speciality | GitHub Account                                      |
