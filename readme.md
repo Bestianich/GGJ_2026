@@ -1,46 +1,32 @@
-# Project Title
-Eventuale sottotitolo / tagline
+# Wo-Globo
 
 ## Screenshots
-Almeno 2, title e gameplay
-(Link a ./Marketing o ./Screenshots folder)
+<img width="1666" height="930" alt="Splash Art" src="https://github.com/user-attachments/assets/8e7890c2-9368-4eec-8a21-741b051aacd1" />
 
-## Description
-Descrizione sintetica (max 2 frasi) del gioco
 
-## Requirements
-Piattaforma/e su cui gira
+## About
+In an alien world you will manage little Wo-mins. They will react to your actions and engage with themselves, keep them happy for as long as possible.
+Manage them by grabbing and moving them. Keep the enraged far from the happy ones, move the sad ones close to them instead. Do not move too fast though, Wo-mins will get sick and angry. </br></br>
+This game was made for the Global Game Jam 2026 at [Pisa SteamFactory site](https://globalgamejam.org/jam-sites/2026/steamfactory-ggjpisa), with Unity. 
 
-## Rules
-Semplici spiegazioni di come si gioca, i comandi
-altre cose utili se non sono autoesplicative nel gioco
-
-## Challenges
-Ovvero le peculiarità di questo progetto
-
-Ad Es:
-
-- Usa le analytics? AI? Se si in che modo?
-- Target particolare?
-- Come si differenzia?
-- Si può imparare qualcosa?
-- Sfide tecniche o di design superate
-
-## ToDo
-Cosa manca di importante
+## Commands
+- Right Click to rotate the Wo-Globo
+- Left Click to drag the Wo-mins
+- Scrool Wheel to zoom the Wo-Globo
 
 ## Download / Links
-- Links alle builds (se esterne a questo progetto)
-- Links ai docs (se esterne a questo progetto)
-- Links alla Trello Board/Issues (se esterne a questo progetto)
+- [Build](https://drive.google.com/file/d/1kQ0Jif-2RPhLVzG1i2qWZZ4Bl3pikeRv/view?usp=drive_link)
 
 ## Team
-| Nome            | Ruolo | Specialità | Url                                      |
+| Name            | Role  | Speciality | GitHub Account                                      |
 | --------------- | :---: | ---------- | ---------------------------------------- |
-| **NomeCognome** | ruolo | specialità | url al proprio GitHub o pagina personale |
-| **NomeCognome** | ruolo | specialità | url al proprio GitHub o pagina personale |
-| **NomeCognome** | ruolo | specialità | url al proprio GitHub o pagina personale |
-| **NomeCognome** | ruolo | specialità | url al proprio GitHub o pagina personale |
-
-## License
-Licenza d'uso, copyright etc
+| **Edoardo Tagliati** | Game Designer | Testing & Sound Manager | [Ebbro](https://github.com/Ebbro) |
+| **Cosimo Caroti** | Game Designer | Testing & Npc Pattern| [CosimoCaroti](https://github.com/CarotiCosimo) |
+| **Tommaso Gavagni** | Concept Artist | Wo-Globe concept & Splash Art | [TommasoGavagni](https://github.com/TommasoGavagni) |
+| **Margherita Faina** | Concept Artist | Sky box & props concept | [margheritafaiana4](https://github.com/margheritafaina4) |
+| **Giuseppe Andriani de Vito** | 3D Artist |  Rig & Animations | [giuseppe-andriani](https://github.com/giuseppe-andriani) |
+| **Filippo Rinaldi** | 3D Artist | Props & shaders | [Rinaply](https://github.com/Rinaply) |
+| **Linda Celentano** | 3D Artist | Props & Wo-Globo | [lindalindaa](https://github.com/lindalindaa) |
+| **Anna Dorelli** | 3D Artist | Props & Wo-Globo | [AnnaDorelli](https://github.com/AnnaDorelli) |
+| **Chiara Bartoli** | Sound Designer | Sounds & Soundtrack | [eldritchpromise](https://github.com/eldritchpromise) |
+| **Davide Fedeli** | Coder | All the game systems | [Bestianich](https://github.com/Bestianich) |

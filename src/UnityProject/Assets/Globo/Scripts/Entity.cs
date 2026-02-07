@@ -68,8 +68,13 @@ using UnityEngine;
                             UpdateEmotion(Emotion.Sadness);
                         break;
                     }
-                    if(entity._activeEmotion.Emotion != Emotion.Rage)
+
+                    if (entity._activeEmotion.Emotion != Emotion.Rage)
+                    {
+                        GetComponent<EntityController>().Animator.SetTrigger("IsAngry");
                         entity.UpdateEmotion(Emotion.Rage);
+                        
+                    }
                     
                     break;
                 case Emotion.Sadness:
@@ -86,7 +91,7 @@ using UnityEngine;
         {
             return _activeEmotion;
         }
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
             Gizmos.color = _activeEmotion.GizmoColor;
             if(_maskTransform  == null)

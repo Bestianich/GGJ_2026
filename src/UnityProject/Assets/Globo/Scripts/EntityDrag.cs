@@ -10,9 +10,9 @@ public class EntityDrag : MonoBehaviour
     [SerializeField] private float _sizeIncrease;
     [SerializeField] private LayerMask _layerMask;
     [SerializeField] private float _dragDistance = 5f;
+    [SerializeField] private float _offset = 5f;
     private EntityController _entity;
     private Vector3 _screenPoint;
-    private Vector3 _offset;
     private Vector3 _lastScale;
 
     private bool _isDragging;
@@ -28,8 +28,11 @@ public class EntityDrag : MonoBehaviour
     {
         if (_isDragging)
         {
-            transform.position = _camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, _dragDistance));
+            
+            
+            transform.position = _camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x , Input.mousePosition.y, _offset)); ;
             transform.up = _camera.transform.up;
+            
         }
     }
     public void OnMouseDown()
@@ -38,10 +41,11 @@ public class EntityDrag : MonoBehaviour
         Debug.Log("OnMouseDown");
         _entity.IsDragged = true;
         _isDragging = true;
-        //_lastParent = transform.parent;
         transform.localScale *= _sizeIncrease;
-        transform.parent = _camera.transform;
+        transform.parent = null;
         _entity.StopNextPoint();
+        _entity.Animator.SetBool("IsGrabbed" , true);
+        SoundManager.Instance.PlaySound("SFX_Pickup");
     }
 
     public void Drop()
@@ -61,12 +65,17 @@ public class EntityDrag : MonoBehaviour
     {
         _isDragging = false;
         _entity.IsDragged = false;
-        _isDragging = false;
         _entity.UpdateContinent();
+        Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, 1 << 7))
+        {
+            transform.position = hit.point;
+        }
 
         _entity.StartRandomPoint();
         transform.localScale /= _sizeIncrease;
-        Cursor.lockState = CursorLockMode.Confined;
-        return;
+        _entity.Animator.SetBool("IsGrabbed" , false);
+        SoundManager.Instance.PlaySound("SFX_Drop");
+        
     }
 }

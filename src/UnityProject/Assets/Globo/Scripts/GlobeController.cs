@@ -80,7 +80,7 @@ public class GlobeController : MonoBehaviour
     [ContextMenu("GenerateRandomPoint")]
     public void GenerateRandomPoint()
     {
-         _point = UnityEngine.Random.onUnitSphere * _globeRadius;
+         _point = UnityEngine.Random.onUnitSphere * GlobeRadius + GlobePivot.position;
          Debug.Log(_point);
     }
 
@@ -88,13 +88,12 @@ public class GlobeController : MonoBehaviour
     {
         
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(_point - _globePivot.position,0.1f);
+        Gizmos.DrawSphere(_point,0.1f);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(_globePivot.position,GlobeRadius);
         if(_mainCamera == null)
             return;
-        Gizmos.DrawRay(_globePivot.position , _globePivot.forward *10f);
-        Gizmos.DrawCube(_mainCamera.transform.position, Vector3.one);
-        Gizmos.DrawRay(Camera.main.transform.position,  (_mousePosition - Camera.main.transform.position ) * 10f);
-        Gizmos.DrawSphere(_mousePosition,0.1f);
+        
         
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 
+[RequireComponent(typeof(MeshCollider))]
 public class Continent : MonoBehaviour
 {
     [SerializeField] public List<Entity> _entities;
@@ -14,7 +15,8 @@ public class Continent : MonoBehaviour
     [SerializeField] private List<Spawner> _spawners;
     [SerializeField] private float _range;
     [SerializeField] private MeshRenderer _meshRenderer;
-
+    [FormerlySerializedAs("_GizmoColor")] [SerializeField] private Color _gizmoColor = Color.yellow;
+    public MeshCollider MeshCollider;
 
     private void Awake()
     {
@@ -26,29 +28,34 @@ public class Continent : MonoBehaviour
         {
             foreach (var spawner in _spawners)
             {
-                _entities.AddRange(spawner.Spawn());
+                spawner.Spawn();
             }
         }
+        MeshCollider = GetComponent<MeshCollider>();
     }
 
     private void Start()
     {
+        StartCoroutine(PlaceEntities(_entities));
         StartCoroutine(EnrageEntities());
     }
     
+    
     public float FindDistance(Vector3 point)
     {
-        return Vector3.Distance(transform.position, point);
+        return Mathf.Abs(Vector3.Distance(_continetCenter.position, point));
     }
 
     public MeshRenderer GetMeshRenderer()
     {
         return _meshRenderer;
     }
-
+    
     public void AddEntity(Entity entity)
     {
+        Debug.Log("Added entity: " + entity.name + " | In Continent: " + transform.name);
         _entities.Add(entity);
+        entity.transform.parent = transform;
         UpdateCount();
     }
 
@@ -58,6 +65,23 @@ public class Continent : MonoBehaviour
         UpdateCount();
     }
 
+    public IEnumerator PlaceEntities(List<Entity> entities)
+    {
+        Debug.Log(entities.Count);
+        while (entities.Count <= 0)
+            yield return null;
+        foreach (Entity entity in entities)
+        {
+            Debug.Log(entity.name);
+            Vector3 point = UnityEngine.Random.onUnitSphere * GlobeController.Instance.GlobeRadius + GlobeController.Instance.GlobePivot.position;
+            while(!entity.GetComponent<EntityController>().IsInsideMesh(point, MeshCollider))
+            {
+                point = UnityEngine.Random.onUnitSphere * GlobeController.Instance.GlobeRadius + GlobeController.Instance.GlobePivot.position;
+                yield return null;
+            }
+            entity.transform.position = point;
+        }
+    }
     public Entity NearestEntity(Vector3 point , float range)
     {
         float distance = 0f;
@@ -65,9 +89,6 @@ public class Continent : MonoBehaviour
         foreach (var entity in _entities)
         {
             var temp = Vector3.Distance(point , entity.transform.position);
-            Debug.Log(temp);
-            Debug.Log(range);
-            Debug.Log(temp > range);
             if (temp > range || temp == 0)
                 continue;
             if (distance <= temp)
@@ -115,7 +136,9 @@ public class Continent : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = _gizmoColor;
+        if(_continetCenter == null)
+            return;
         Gizmos.DrawSphere(_continetCenter.position, 0.5f);
         foreach (Entity entity in _entities)
         {
