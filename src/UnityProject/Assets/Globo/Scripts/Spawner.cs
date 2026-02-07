@@ -7,6 +7,8 @@ public class Spawner : MonoBehaviour
     [SerializeField] private Entity _npcPrefab;
     [SerializeField] private int _spawnAmount = 5;
     [SerializeField] private Transform _spawnPoint;
+    private List<Transform> _spawnPoints;
+    public bool CanSpawn = true;
     
 
     public void Spawn()
@@ -15,6 +17,7 @@ public class Spawner : MonoBehaviour
         {
             var obj = Instantiate(_npcPrefab, _spawnPoint.position, Quaternion.identity);
         }
+        CanSpawn = false;
     }
 
     public void OnDrawGizmos()
